@@ -1,132 +1,151 @@
 var path = require('path');
 var os = require('os');
 var fs = require('fs');
-
 var filetail = require('file-tail')
 
+///////  Creating Module //////
+var exports = module.exports = {};
+
+var logFile = "";
+var configFile = "";
+var configFileName = "log.config";
 
 // // LogReader Class
-function LogReader(id) {
-    this.id = id;
-    this.logFile = "";
-    this.configFile = "";
-    this.configFileName = "log.config";
-}
+exports.logReader = function() {
+    return console.log("Module Successfully Imported");
+};
 // Begins the process of polling the logFile for changes for the purpose of finding a Decklist to validate.
 // void 
-LogReader.prototype.beginReporting = function() {
-    this.pollForChange();
+exports.beginReporting = function() {
+    pollForChange();
 };
-// // Stops the application from polling the logFile.
-// // void 
-// LogReader.prototype.stopReporting = function() {
 
-// };
-
-LogReader.prototype.getDataLocation = function() {
-    return 'C:/Program Files (x86)/Hearthstone/Hearthstone_Data/output_log.txt';
+// Stops the application from polling the logFile.
+// void 
+exports.stopReporting = function() {
+    return "Method is unimplemented";
 };
-LogReader.prototype.getConfigLocation = function() {
+
+// /*
+// Basic file copy method.
+// */
+copyFile = function(configFile, location) {
+
+    let readStream = fs.createReadStream(configFile);
+
+    readStream.once('error', (err) => {
+        console.log(err);
+    });
+
+    readStream.once('end', () => {
+        console.log('log.config file is in place');
+    });
+
+    readStream.pipe(fs.createWriteStream(location));
+};
+
+// /*
+// To obtain the games actions in a log file, you must add a log.config file that has been provided 
+// in the folder to a specific location in the file structure. 
+// TODO: Allow it to verify permissions.
+// */
+exports.setLogFile = function() {
+    console.log("Set Log File");
+
+    let filename = configFileName;
+    let configFile = path.join(__dirname, filename);
+    let locationDir = path.join(configFile, filename);
+
+    fs.access(locationDir, (err) => {
+        if (err)
+            fs.mkdirSync(locationDir);
+
+        copyFile(configFile, path.join(locationDir, filename));
+    });
+
+};
+
+// /*
+// Updates the logFile field with the most current appropriate Hearthstone log file.
+// This method also determines the correct pathing for the location of this log file 
+// depending on if you are on a Windows or Mac. 
+//     TODO: Currently untested correct path for Windows
+// */
+exports.getLogFile = function() {
+    console.log("Get Log File");
+
     if (/^win/.test(os.platform())) {
-        return process.env.LOCALAPPDATA + '/Blizzard/Hearthstone/' + this.configFileName;
-    } else {
-        return process.env.HOME + 'Library/Preferences/Blizzard/Hearthstone/s' + this.configFileName;
-    }
-};
-LogReader.prototype.configExist = function() {
-    return fs.existsSync(this.getConfigLocation());
-};
-LogReader.prototype.createConfig = function(callback) {
-    if (this.configExist()) return;
-    fs.renameSync(process.cwd() + '/' + this.configFileName, this.getConfigLocation());
-};
-
-LogReader.prototype.setLogFile = function() {
-
-    this.createConfig();
-
-
-    // this.getLogFile();
-
-    // console.log('config file path: %s', this.configFile);
-    // console.log('log file path: %s', this.logFile);
-
-    // var localConfigFile = path.join(__dirname, 'log.config');
-    // fs.createReadStream(localConfigFile).pipe(fs.createWriteStream(this.configFile));
-    // console.log('Copied log.config file to force Hearthstone to write to its log file.');
-};
-// // Updates the logFile field with the most current appropriate Hearthstone log file.
-// // void
-LogReader.prototype.getLogFile = function() {
-
-    if (/^win/.test(os.platform())) {
-        console.log('Windows platform detected.');
+        console.log('Windows computer.');
         var programFiles = 'Program Files';
         if (/64/.test(os.arch())) {
             programFiles += ' (x86)';
         }
-        this.logFile = path.join('C:', programFiles, 'Hearthstone', 'Hearthstone_Data', 'output_log.txt');
-        this.configFile = path.join(process.env.LOCALAPPDATA, 'Blizzard', 'Hearthstone', 'log.config');
+
+        // These are default locations, if the user has changed the location of their directory it will fail
+        // we can support finding this in the application
+        logFile = path.join('C:', programFiles, 'Hearthstone', 'Logs', 'Power.log');
+        configFile = path.join(process.env.LOCALAPPDATA, '/Blizzard/Hearthstone/');
+
     } else {
-        console.log('OS X platform detected.');
-        this.logFile = path.join(process.env.HOME, 'Library', 'Logs', 'Unity', 'Player.log');
-        this.configFile = path.join(process.env.HOME, 'Library', 'Preferences', 'Blizzard', 'Hearthstone');
+        console.log('Mac computer.');
+
+        logFile = path.join('/Applications/Hearthstone/Logs/Power.log');
+        configFile = path.join(process.env.HOME, '/Library/Preferences/Blizzard/Hearthstone/');
+
     }
 
 };
 
-LogReader.prototype.printLogLocations = function() {
-    console.log(this.id);
-    console.log(this.logFile);
-    console.log(this.configFile);
-}
+// Constructs a Decklist object from the log file that is being parsed.
+// returns Decklist 
+LogReader.prototype.constructDecklist = function(logFile) {
+    return "This method is not implemented";
+};
 
-// // Constructs a Decklist object from the log file that is being parsed.
-// // returns Decklist 
-// LogReader.prototype.constructDecklist = function(logFile) {
+/*
+Searches for new entries in the logFile specified to determine whether 
+the log has changed and needs handling with handleChange(). These differences are 
+handled line by line and passed to the  handleChange function to parse the data.
+Called by beginReporting().
+*/
+pollForChange = function() {
 
-// };
-// Searches for differences between prevLogFile and logFile to determine whether the log has changed and needs handling with handleChange().
-//void 
-LogReader.prototype.pollForChange = function() {
-
-    var ft = filetail.startTailing(this.configFile);
-    ft.on('line', this.handleChange);
+    var ft = filetail.startTailing(logFile);
+    ft.on('line', function(line) {
+        handleChange(line);
+    });
 
 };
-// Determines whether the log file change includes a reportable Decklist for reportDecklist(). Updates the prevLogFile field.
-//void 
-LogReader.prototype.handleChange = function(line) {
+/*
+Determines whether the log file change includes a reportable Decklist for reportDecklist(). Searches for keywords 
+in the log file that contains deck information and stores it.
+*/
+handleChange = function(line) {
 
-    if (line.toLowerCase().indexOf('victory_screen_start') !== -1) {
-        alert('yo win yourself a horse');
-    }
-    if (line.toLowerCase().indexOf('defeat_screen_start') !== -1) {
-        alert('yo lost yo game');
-    }
+    // if (line.toLowerCase().indexOf('victory_screen_start') !== -1) {
+    //     alert('yo win yourself a horse');
+    // }
+    // if (line.toLowerCase().indexOf('defeat_screen_start') !== -1) {
+    //     alert('yo lost yo game');
+    // }
     console.log(line);
 
 };
 
-// // Reports a Decklist to ValidationManager
-// // for use with validateDecklist(Decklist).
-// // void
+// Reports a Decklist to ValidationManager
+// for use with validateDecklist(Decklist).
+// void
 
-// LogReader.prototype.reportDecklist = function() {
+exports.reportDecklist = function() {
+    return "This method is not implemented";
+};
 
-// };
-
-/////////////////////////////////
-/////////// Testing  ///////////
-myLogReader = new LogReader(44);
-myLogReader.setLogFile();
-// myLogReader.getLogFile();
-// myLogReader.printLogLocations();
-// myLogReader.beginReporting();
-
-
-///////  Creating Module //////
-// module.exports.LogReader = LogReader;
-// module.exports.readLogs = function(id) {
-//     return new LogReader(id);
-// };
+/*
+Prints the variables stored
+*/
+exports.printLogLocations = function() {
+    console.log("Log information");
+    console.log(logFile);
+    console.log(configFile);
+    console.log(configFileName);
+}

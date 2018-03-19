@@ -1,5 +1,14 @@
-var myLogReader = require('./LogReader.js');
+/////////////////////////////////
+/////////// Testing  ////////////
 
-myLogReader = new LogReader(44);
-myLogReader.getLogFile();
-myLogReader.printLogLocations();
+var LogReader = require('./LogReader.js');
+
+LogReader.logReader();
+
+LogReader.setLogFile();
+
+LogReader.getLogFile();
+
+LogReader.beginReporting();
+
+LogReader.printLogLocations();

@@ -46,7 +46,8 @@ const getWindowPosition = () => {
   return { x: x, y: y };
 };
 
-  const createWindow = () => {
+const createWindow = () => {
+    console.log("creating window");
     mainWindow = new BrowserWindow({
       width: 520, //window width should be 520
       height: 440, //window height should be 440
@@ -61,7 +62,9 @@ const getWindowPosition = () => {
         // hidden
         backgroundThrottling: false,
         webSecurity: false
-      }
+      },
+        icon: __dirname + 'assets/icon.png',
+        backgroundColor: '#555555',
     });
     mainWindow.loadURL(`file://${__dirname}/dist/index.html`);
     //mainWindow.webContents.openDevTools();
@@ -73,40 +76,40 @@ const getWindowPosition = () => {
     // Hide the window when it loses focus
     //mainWindow.on('blur', () => {
       //if (!mainWindow.webContents.isDevToolsOpened()) {
-       // mainWindow.hide();
-     // }
-   // });
+        //mainWindow.hide();
+      //}
+     //});
 
-  };
+};
 
-  const toggleWindow = () => {
-    if (mainWindow.isVisible()) {
-      mainWindow.hide();
-    } else {
-        console.log('double tap');
-      showWindow();
-    }
-  };
+const toggleWindow = () => {
+if (mainWindow.isVisible()) {
+  mainWindow.hide();
+} else {
+    console.log('double tap');
+  showWindow();
+}
+};
 
-  const showWindow = () => {
-    const position = getWindowPosition();
-    mainWindow.setPosition(position.x, position.y, false);
-    mainWindow.show();
-    mainWindow.focus();
+const showWindow = () => {
+const position = getWindowPosition();
+mainWindow.setPosition(position.x, position.y, false);
+mainWindow.show();
+mainWindow.focus();
 
-  };
+};
 
-  ipcMain.on('show-window', () => {
-    showWindow();
-  });
+ipcMain.on('show-window', () => {
+showWindow();
+});
 
-  ipcMain.on('hide-window', () => {
-    mainWindow.hide();
-  });
+ipcMain.on('hide-window', () => {
+mainWindow.hide();
+});
 
-  ipcMain.on('reload-window', () => {
-    mainWindow.loadURL(`file://${path.join(__dirname, 'index.html')}`);
-  });
+ipcMain.on('reload-window', () => {
+mainWindow.loadURL(`file://${path.join(__dirname, 'index.html')}`);
+});
 
 
 app.on('ready', () => {

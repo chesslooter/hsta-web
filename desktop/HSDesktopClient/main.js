@@ -50,7 +50,7 @@ const getWindowPosition = () => {
     mainWindow = new BrowserWindow({
       width: 520, //window width should be 520
       height: 440, //window height should be 440
-      show: false,
+      show: true,
       frame: false,
       fullscreenable: false, 
       alwaysOnTop: true,

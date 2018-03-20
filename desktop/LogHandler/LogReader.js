@@ -98,7 +98,7 @@ exports.getLogFile = function() {
 
 // Constructs a Decklist object from the log file that is being parsed.
 // returns Decklist 
-LogReader.prototype.constructDecklist = function(logFile) {
+constructDecklist = function(logFile) {
     return "This method is not implemented";
 };
 
@@ -122,13 +122,20 @@ in the log file that contains deck information and stores it.
 */
 handleChange = function(line) {
 
-    // if (line.toLowerCase().indexOf('victory_screen_start') !== -1) {
-    //     alert('yo win yourself a horse');
-    // }
+    if (line.toLowerCase().indexOf('running') !== -1) {
+        console.log('match begins');
+    }
+    if (line.toLowerCase().indexOf('complete') !== -1) {
+        console.log('match ends');
+    }
+    if (line.toLowerCase().indexOf('deck') !== -1) {
+        console.log(line);
+    }
+
     // if (line.toLowerCase().indexOf('defeat_screen_start') !== -1) {
     //     alert('yo lost yo game');
     // }
-    console.log(line);
+    // console.log(line);
 
 };
 

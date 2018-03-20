@@ -1,4 +1,31 @@
-<p>
-    From here you can add decklists.
-</p>
-<li><button routerLink="validation">Validation</button></li>
+<div class="container">
+  <div class="row justify-content-center">
+    <p>
+      Enter your decks below and hit "Add" to
+      <br> add them to your deck. Once all decks are
+      <br> entered, proceed to Validation.
+    </p>
+  </div>
+  <div class="row justify-content-center">
+    <div id="inputs" class="col-md-auto">
+      <input #newDeck (keyup.enter)="addDeck(newDeck.value)" (blur)="addDeck(newDeck.value); newDeck.value='' " type="text" class="form-control"
+        placeholder="Deck Name">
+    </div>
+    <div id="inputs" class="col-md-auto">
+      <input #newDeckCode type="text" class="form-control" placeholder="Deck Code">
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div id="inputs" class="col-md-auto">
+      <button (click)="addDeck(newDeck.value)" type="button" class="btn btn-primary">Add</button>
+    </div>
+    <div id="inputs" class="col-md-auto">
+      <button type="button" class="btn btn-primary" routerLink="../validation">Go to Validation</button>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <ul>
+      <li *ngFor="let deck of decks">{{deck}}</li>
+    </ul>
+  </div>
+</div>

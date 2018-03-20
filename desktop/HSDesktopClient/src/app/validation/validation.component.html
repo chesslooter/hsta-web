@@ -1,5 +1,20 @@
-<p>
-    From here you can start deck validation.
-</p>
-<li><button routerLink="">Home</button></li>
-
+<div class="container">
+    <div class="row justify-content-center">
+        <p>
+            Your decks are set. Click "Validate" to begin
+            <br> or "Back" to return to Deck Input Page.
+        </p>
+    </div>
+    <div class="row justify-content-center">
+        <div id="inputs" class="col-md-auto">
+            <button type="button" class="btn btn-primary">Validate</button>
+        </div>
+        <div id="inputs" class="col-md-auto">
+            <button routerLink="../decklists" type="button" class="btn btn-primary">Back</button>
+        </div>
+    </div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button *ngFor="let deck of decks" type="button" class="btn btn-secondary">{{deck}}</button>
+        </div>
+   
+</div>

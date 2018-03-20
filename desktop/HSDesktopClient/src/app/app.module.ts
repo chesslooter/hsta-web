@@ -7,20 +7,29 @@ import { RouterModule, Routes } from '@angular/router';
 import { ValidationComponent } from './validation/validation.component';
 import { DecklistsComponent } from './decklists/decklists.component';
 import { ErrorComponent } from './error/error.component';
+import { AlertModule } from 'ngx-bootstrap';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 const appRoutes: Routes = [
-    {
-        path: 'validation',
-        component: ValidationComponent
-    },
-    {
-        path: '',
-        component: DecklistsComponent
-    },
-    {
-      path: 'error',
-      component: ErrorComponent
-    }
+  {
+    path: 'validation',
+    component: ValidationComponent
+  },
+  {
+    path: 'decklists',
+    component: DecklistsComponent
+  },
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'error',
+    component: ErrorComponent
+  }
 ];
 
 @NgModule({
@@ -28,11 +37,14 @@ const appRoutes: Routes = [
     AppComponent,
     ValidationComponent,
     DecklistsComponent,
-    ErrorComponent
+    ErrorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

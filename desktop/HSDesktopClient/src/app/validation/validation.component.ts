@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ValidationComponent implements OnInit {
 
   constructor() { }
+  
+  decks = ['Murloc Paladin', 'Cube Lock', 'I Pay To Win'];
 
   ngOnInit() {
   }

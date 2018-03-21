@@ -12,12 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
-<<<<<<< HEAD
 import { ConfigService } from './config.service';
-
-=======
 import {FormsModule} from '@angular/forms';
->>>>>>> d41c8c619ddc1edb74d4bd817d810010e07dba50
 
 
 const appRoutes: Routes = [
@@ -52,15 +48,12 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     AlertModule.forRoot(),
-<<<<<<< HEAD
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [
     DataService,
     ConfigService
-=======
-    FormsModule
->>>>>>> d41c8c619ddc1edb74d4bd817d810010e07dba50
   ],
   bootstrap: [AppComponent]
 })

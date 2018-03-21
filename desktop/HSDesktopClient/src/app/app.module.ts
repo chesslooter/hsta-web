@@ -10,6 +10,7 @@ import { ErrorComponent } from './error/error.component';
 import { AlertModule } from 'ngx-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DataService } from './data.service';
 
 
 
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AlertModule.forRoot()
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

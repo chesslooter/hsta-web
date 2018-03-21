@@ -3,6 +3,8 @@ import {Observable} from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, retry  } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
+import { DataService } from "../data.service";
+
 
 
 @Component({
@@ -12,9 +14,12 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class DecklistsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: DataService) { }
+
+  email: string;
 
   ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.email = message)
 
   }
 

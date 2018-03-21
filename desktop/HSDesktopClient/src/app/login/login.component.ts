@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from "../data.service"
 
 @Component({
   selector: 'app-login',
@@ -7,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: DataService) { }
+
+  email :string;
 
   ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.email = message)
   }
 
-  login(){
-    
+  login(nEmail: string){
+    console.log("logging in");
+
+    this.data.changeMessage(nEmail);
   }
 
 }

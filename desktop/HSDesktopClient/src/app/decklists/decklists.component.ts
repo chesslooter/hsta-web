@@ -5,6 +5,7 @@ import { catchError, retry  } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { DataService } from "../data.service";
 import { Router } from '@angular/router';
+import { ConfigService } from '../config.service';
 
 
 @Component({
@@ -14,14 +15,16 @@ import { Router } from '@angular/router';
 })
 export class DecklistsComponent implements OnInit {
 
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private data: DataService, private router: Router, private config: ConfigService) { }
 
   email: string;
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(message => this.email = message)
-
+    this.data.currentMessage.subscribe(message => this.email = message);
+    this.config.getUserDecklists(this.email)
+        .subscribe(response => console.log(response));
   }
+
 
   decks = ['Murloc Paladin', 'Cube Lock', 'I Pay To Win'];
 

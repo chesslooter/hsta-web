@@ -10,7 +10,9 @@ import { ErrorComponent } from './error/error.component';
 import { AlertModule } from 'ngx-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
+import { ConfigService } from './config.service';
 
 
 
@@ -39,15 +41,19 @@ const appRoutes: Routes = [
     ValidationComponent,
     DecklistsComponent,
     ErrorComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    HttpModule
   ],
-  providers: [DataService],
+  providers: [
+    DataService,
+    ConfigService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

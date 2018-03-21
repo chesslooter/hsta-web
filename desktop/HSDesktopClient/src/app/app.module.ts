@@ -11,7 +11,7 @@ import { AlertModule } from 'ngx-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
-
+import {FormsModule} from '@angular/forms';
 
 
 const appRoutes: Routes = [
@@ -45,7 +45,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    FormsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
 import { Router } from '@angular/router';
+import {NgForm} from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -22,4 +24,5 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['decklists']);
   }
 
+   
 }

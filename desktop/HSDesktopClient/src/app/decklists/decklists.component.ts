@@ -28,18 +28,20 @@ export class DecklistsComponent implements OnInit {
   addDeck(deckName: string){
     if(deckName){
       this.decks.push(deckName
-      )
+      );
       /*this.sendDeck(deckCode)
   .subscribe(success => {
     if(success) this.decks.push(deckName
   )});*/
     }
-
   }
 
   validate(){
     this.router.navigate(['../validation']);
+  }
 
+  decksEntered():boolean{
+    return(this.decks.length > 0);
   }
 
 }

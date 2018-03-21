@@ -1,4 +1,6 @@
 <div class="container">
+    <form #deckForm="ngForm">
+
   <div class="row justify-content-center">
     <p>
       Enter your decks below and hit "Add" to
@@ -20,7 +22,7 @@
       <button (click)="addDeck(newDeck.value)" type="button" class="btn btn-primary">Add</button>
     </div>
     <div id="inputs" class="col-md-auto">
-      <button type="button" class="btn btn-primary" (click)="validate()" >Go to Validation</button>
+      <button [disabled]="!decksEntered()" type="button" class="btn btn-primary" (click)="validate()" >Go to Validation</button>
     </div>
   </div>
   <div class="row justify-content-center">
@@ -29,4 +31,6 @@
       <li *ngFor="let deck of decks">{{deck}}</li>
     </ul>
   </div>
+</form>
+
 </div>

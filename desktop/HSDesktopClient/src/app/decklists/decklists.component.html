@@ -8,11 +8,11 @@
   </div>
   <div class="row justify-content-center">
     <div id="inputs" class="col-md-auto">
-      <input #newDeck (keyup.enter)="addDeck(newDeck.value)" (blur)="addDeck(newDeck.value); newDeck.value='' " type="text" class="form-control"
+      <input id="deckName" #newDeck newDeck.value=''  type="text" class="form-control"
         placeholder="Deck Name">
     </div>
     <div id="inputs" class="col-md-auto">
-      <input #newDeckCode type="text" class="form-control" placeholder="Deck Code">
+      <input id="deckCode" #newDeckCode type="text" class="form-control" placeholder="Deck Code">
     </div>
   </div>
   <div class="row justify-content-center">
@@ -20,10 +20,11 @@
       <button (click)="addDeck(newDeck.value)" type="button" class="btn btn-primary">Add</button>
     </div>
     <div id="inputs" class="col-md-auto">
-      <button type="button" class="btn btn-primary" routerLink="../validation">Go to Validation</button>
+      <button type="button" class="btn btn-primary" (click)="validate()" >Go to Validation</button>
     </div>
   </div>
   <div class="row justify-content-center">
+    <p>{{email}}</p>
     <ul>
       <li *ngFor="let deck of decks">{{deck}}</li>
     </ul>

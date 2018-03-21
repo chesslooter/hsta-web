@@ -4,7 +4,7 @@ import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, retry  } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { DataService } from "../data.service";
-
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { DataService } from "../data.service";
 })
 export class DecklistsComponent implements OnInit {
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private router: Router) { }
 
   email: string;
 
@@ -34,6 +34,11 @@ export class DecklistsComponent implements OnInit {
     if(success) this.decks.push(deckName
   )});*/
     }
+
+  }
+
+  validate(){
+    this.router.navigate(['../validation']);
 
   }
 

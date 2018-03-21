@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from "../data.service"
+import { DataService } from "../data.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { DataService } from "../data.service"
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private router: Router) { }
 
   email :string;
 
@@ -17,9 +18,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(nEmail: string){
-    console.log("logging in");
-
     this.data.changeMessage(nEmail);
+    this.router.navigate(['decklists']);
   }
 
 }

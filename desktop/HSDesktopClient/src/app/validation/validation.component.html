@@ -7,14 +7,13 @@
     </div>
     <div class="row justify-content-center">
         <div id="inputs" class="col-md-auto">
-            <button type="button" class="btn btn-primary">Validate</button>
+            <button (click)="validate()" type="button" class="btn btn-primary">Validate</button>
         </div>
         <div id="inputs" class="col-md-auto">
             <button (click)="back()" type="button" class="btn btn-primary">Back</button>
         </div>
     </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button *ngFor="let deck of decks" type="button" class="btn btn-secondary">{{deck}}</button>
-        </div>
-   
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button *ngFor="let deck of decks" type="button" class="btn btn-secondary">{{deck}}</button>
+    </div>
 </div>

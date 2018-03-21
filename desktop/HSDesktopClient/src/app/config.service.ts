@@ -5,15 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 @Injectable()
 export class ConfigService {
-  private url = 'localhost:3000';
+  private url = 'http://192.168.1.12:3000';
 
   constructor(private http: Http) { }
 
   getUserDecklists(userid) {
+    console.log("ping");
     return this.http.get(this.url + '/api/get_user_decklists?userid=' + userid);
   }
 
-  addDeck(userid, deckcode, deckname) {
+  addDeck(userid, deckcode, deckname) {      
     return this.http.get(this.url + '/api/add_deck?userid=' + 
             userid + '&deckcode=' + deckcode + '&deckname=' + deckname);
   }

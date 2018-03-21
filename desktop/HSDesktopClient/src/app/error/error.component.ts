@@ -16,6 +16,5 @@ export class ErrorComponent implements OnInit {
 
   back() {
     this.router.navigate(['validation']);
-
   }
 }

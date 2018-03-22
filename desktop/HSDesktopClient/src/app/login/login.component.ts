@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   userID : string;
   email: string;
+  success: boolean;
 
   ngOnInit() {
     this.data.currentUserID.subscribe(ID => this.userID = ID);
@@ -26,10 +27,16 @@ export class LoginComponent implements OnInit {
   }
 
   login(nEmail: string){
+    this.config.login(nEmail).subscribe(res => 
+    this.postLog(res['id']));
+  }
+  
+  postLog(uID: string){
+    this.userID = uID;
     this.data.changeUserID(this.userID);
     this.data.changeEmail(this.email);
     this.router.navigate(['decklists']);
-  }   
+  }
 
   createUser(nEmail: string){
     this.config.createUser(nEmail).subscribe(response => console.log(response));    

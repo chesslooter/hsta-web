@@ -29,7 +29,11 @@ export class ConfigService {
   }
 
   createUser(email) {
-    return this.http.get(this.url + '/api/add_deck?email=' + email).map(res => res.json());
+    return this.http.get(this.url + '/api/create_user?email=' + email).map(res => res.json());
+  }
+
+  login(email) {
+    return this.http.get(this.url + '/api/login?email=' + email).map(res => res.json());
   }
 
 }

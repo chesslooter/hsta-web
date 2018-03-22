@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ElectronService } from 'ngx-electron';
+import 'rxjs/Rx';
 
 @Injectable()
 export class ConfigService {
-  private url = 'http://192.168.1.12:3000';
+  private url = 'https://tranquil-eyrie-40858.herokuapp.com';
 
   constructor(private http: Http, private electronService: ElectronService) { }
 
@@ -37,8 +38,10 @@ export class ConfigService {
   }
 
   verify(){
-    console.log('Boop');
     this.electronService.ipcRenderer.send('startValidation');
+    this.electronService.ipcRenderer.on('log', (event, arg) => {
+      console.log(arg);
+    });
   }
 
 }

@@ -13,10 +13,13 @@ export class ValidationComponent implements OnInit {
 
   constructor(private data: DataService, private router: Router, private config: ConfigService) { }
   
-  decks = ['Murloc Paladin'];
+  decks = [];
+  deckCodes = [];
   activeCardList=[];
 
   ngOnInit() {  
+    this.data.currentDecks.subscribe(decks => this.decks=decks);
+    this.data.currentDeckCodes.subscribe(deckCodes=>this.deckCodes);
     //Call API and get registered decks for user, set decks[] equal to this
     //Can get cards all at once here, and then bind activeCardsList upon selecting deck button,
     //as opposed to in validate()

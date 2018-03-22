@@ -6,9 +6,13 @@ export class DataService {
 
   private emailSource = new BehaviorSubject<string>("");
   private userIDSource = new BehaviorSubject<string>("");
+  private decksSource = new BehaviorSubject<string[]>([]);
+  private deckCodesSource = new BehaviorSubject<string[]>([]);
 
   currentEmail = this.emailSource.asObservable();
   currentUserID = this.userIDSource.asObservable();
+  currentDecks = this.decksSource.asObservable();
+  currentDeckCodes = this.deckCodesSource.asObservable();
 
   constructor() { }
 
@@ -18,6 +22,14 @@ export class DataService {
 
   changeEmail(email: string) {
     this.emailSource.next(email)
+  }
+
+  changeDecks(decks: string[]) {
+    this.decksSource.next(decks)
+  }
+
+  changeDeckCodes(deckCodes: string[]) {
+    this.deckCodesSource.next(deckCodes)
   }
 
 }

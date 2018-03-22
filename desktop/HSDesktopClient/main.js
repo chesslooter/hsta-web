@@ -54,9 +54,9 @@ const createWindow = () => {
       height: 440, //window height should be 440
       show: true,
       frame: true,
-      fullscreenable: false, 
+      fullscreenable: true, 
       alwaysOnTop: false,
-      resizable: false, //turn off to lock size 
+      resizable: true, //turn off to lock size 
       transparent: false,
       webPreferences: {
         // Prevents renderer process code from not running when window is
@@ -120,6 +120,7 @@ ipcMain.on('startValidation', () => {
 
   var interval = setInterval(function() {
     var bool = LogReader.report();
+    mainWindow.webContents.send('log',bool);
     console.log(bool);
     if (bool) {
         decklist = LogReader.reportDecklist();
@@ -130,6 +131,8 @@ ipcMain.on('startValidation', () => {
     }
 }, 5000);
 });
+
+
 
 
 app.on('ready', () => {

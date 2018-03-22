@@ -114,6 +114,7 @@ exports.logReader = function() {
 // Calls the pollForChange method which begins the process for handling changes to the log file.
 */
 exports.beginReporting = function() {
+    console.log("starting");
     farseer.start();
 };
 

@@ -21,8 +21,10 @@ export class DecklistsComponent implements OnInit {
 
   ngOnInit() {
     this.data.currentMessage.subscribe(message => this.email = message);
-    this.config.getUserDecklists(this.email)
-        .subscribe(response => console.log(response));
+    this.config.getUserDecklists(this.email).subscribe(me => console.log(me['success']));
+              //.map(body => body.Data)
+              //.map(data => data.success).subscribe(test => console.log(test));
+       // .subscribe(response => console.log(response.text()));
   }
 
 

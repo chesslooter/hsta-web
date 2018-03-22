@@ -27,9 +27,8 @@ export class DecklistsComponent implements OnInit {
     this.data.currentUserID.subscribe(message => this.userID = message);
     this.data.currentEmail.subscribe(message => this.email = message);
     this.config.getUserDecklists(this.userID)
-      .subscribe(response => console.log(response));
+      .subscribe(response => this.decks = response.deck_names);
       //Need to hook up decks and deckCodes to this function response  
-      //If this fails, need to call create new user
     } 
 
   addDeck(deckName: string, deckCode: string){
@@ -40,7 +39,7 @@ export class DecklistsComponent implements OnInit {
         .subscribe(response => console.log(response));
 
       this.nDeckName = "";
-      this.nDeckCode ="";     
+      this.nDeckCode ="";   
     }
     else {
       //Let user know there was a problem

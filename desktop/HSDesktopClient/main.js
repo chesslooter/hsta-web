@@ -53,7 +53,7 @@ const createWindow = () => {
       width: 520, //window width should be 520
       height: 440, //window height should be 440
       show: true,
-      frame: false,
+      frame: true,
       fullscreenable: false, 
       alwaysOnTop: false,
       resizable: false, //turn off to lock size 
@@ -116,11 +116,11 @@ ipcMain.on('startValidation', () => {
   mainWindow.hide();
 
   LogReader.getLogFile();
-  LogReader.manualLogLocation();  
   LogReader.beginReporting();
 
   var interval = setInterval(function() {
     var bool = LogReader.report();
+    console.log(bool);
     if (bool) {
         decklist = LogReader.reportDecklist();
         for (var i in decklist) {

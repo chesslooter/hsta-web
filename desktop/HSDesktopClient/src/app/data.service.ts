@@ -4,13 +4,20 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class DataService {
 
-  private messageSource = new BehaviorSubject<string>("");
-  currentMessage = this.messageSource.asObservable();
+  private emailSource = new BehaviorSubject<string>("");
+  private userIDSource = new BehaviorSubject<string>("");
+
+  currentEmail = this.emailSource.asObservable();
+  currentUserID = this.userIDSource.asObservable();
 
   constructor() { }
 
-  changeMessage(message: string) {
-    this.messageSource.next(message)
+  changeUserID(ID: string) {
+    this.userIDSource.next(ID)
+  }
+
+  changeEmail(email: string) {
+    this.emailSource.next(email)
   }
 
 }

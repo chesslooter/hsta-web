@@ -24,11 +24,15 @@ export class ValidationComponent implements OnInit {
     this.router.navigate(['decklists']);
   }
 
-  validate(selectedDeck: string) {
+  validate() {
     //First, must call API to retrieve list of cards for selected deck and setting activeCardList[] equal to this
     //Then, must call Brian's script, getting each card as it is played and checking to see if it's in activeCardList[]
     //If this ever fails, end Brian's script and go to error
     //Otherwise, continue until Brian gives "Match End"
     //Button should be disabled up until "Match End"
+  }
+
+  decksEntered():boolean{
+    return(this.decks.length > 0);
   }
 }

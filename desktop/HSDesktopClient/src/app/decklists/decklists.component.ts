@@ -16,6 +16,7 @@ export class DecklistsComponent implements OnInit {
 
   constructor(private data: DataService, private router: Router, private config: ConfigService) { }
 
+  userID: string;
   email: string;
   nDeckName: string;
   nDeckCode: string;
@@ -23,8 +24,9 @@ export class DecklistsComponent implements OnInit {
   deckCodes = [];
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(message => this.email = message);
-    this.config.getUserDecklists(this.email)
+    this.data.currentUserID.subscribe(message => this.userID = message);
+    this.data.currentEmail.subscribe(message => this.email = message);
+    this.config.getUserDecklists(this.userID)
       .subscribe(response => console.log(response));
       //Need to hook up decks and deckCodes to this function response  
       //If this fails, need to call create new user
@@ -34,20 +36,22 @@ export class DecklistsComponent implements OnInit {
     if(deckName && deckCode){
       this.decks.push(deckName);
       this.deckCodes.push(deckCode);
-      this.config.addDeck(this.email, deckCode,deckName)
+      this.config.addDeck(this.userID, deckCode,deckName)
         .subscribe(response => console.log(response));
 
       this.nDeckName = "";
       this.nDeckCode ="";     
     }
+    else {
+      //Let user know there was a problem
+    }
   }
 
   validate(){
-    this.router.navigate(['../validation']);
+    this.router.navigate(['validation']);
   }
 
   decksEntered():boolean{
     return(this.decks.length > 0);
   }
-
 }

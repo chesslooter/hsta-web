@@ -2,14 +2,16 @@
   <form #loginForm="ngForm">
     <div class="row justify-content-center">
       <div id="inputs" class="col-md-auto">
-        <input #nEmail  type="text" class="form-control"
-          placeholder="Email Address" name="email" [(ngModel)]="email" required>
+        <input #nEmail type="text" class="form-control" placeholder="Email Address" name="email" [(ngModel)]="email" required>
       </div>
     </div>
     <div class="row justify-content-center">
       <div id="inputs" class="col-md-auto">
         <button [disabled]="loginForm.form.invalid" (click)="login(nEmail.value)" type="button" class="btn btn-primary">Login</button>
       </div>
+      <div id="inputs" class="col-md-auto">
+        <button [disabled]="loginForm.form.invalid" (click)="createUser(nEmail.value)" type="button" class="btn btn-primary">Create Account</button>
+      </div>
     </div>
   </form>
-  </div>
+</div>

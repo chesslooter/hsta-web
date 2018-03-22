@@ -10,18 +10,17 @@ export class ConfigService {
   constructor(private http: Http) { }
 
   getUserDecklists(userid) {
-    console.log("ping");
-    return this.http.get(this.url + '/api/get_user_decklists?userid=' + userid);
+    return this.http.get(this.url + '/api/get_user_decklists?userid=' + userid).map(res => res.json());
   }
 
   addDeck(userid, deckcode, deckname) {      
     return this.http.get(this.url + '/api/add_deck?userid=' + 
-            userid + '&deckcode=' + deckcode + '&deckname=' + deckname);
+            userid + '&deckcode=' + deckcode + '&deckname=' + deckname).map(res => res.json());
   }
 
   deleteDeck(userid, deckcode) {
     return this.http.get(this.url + '/api/delete_deck?userid=' + 
-            userid + '&deckcode=' + deckcode);
+            userid + '&deckcode=' + deckcode).map(res => res.json());
   }
 
   updateDecklistName(userid, deckcode, deckname) {
@@ -30,7 +29,7 @@ export class ConfigService {
   }
 
   createUser(email) {
-    return this.http.get(this.url + '/api/add_deck?email=' + email);
+    return this.http.get(this.url + '/api/add_deck?email=' + email).map(res => res.json());
   }
 
 }

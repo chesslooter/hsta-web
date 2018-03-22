@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain, Tray, Shell, Menu} = require('electron');
 const path = require('path');
 const electron = require('electron');
 const platform = require('os').platform();
+const LogReader = require('../LogHandler/LogReader.js');
 
 const assetsDirectory = path.join(__dirname, 'src/assets');
 
@@ -54,7 +55,7 @@ const createWindow = () => {
       show: true,
       frame: false,
       fullscreenable: false, 
-      alwaysOnTop: true,
+      alwaysOnTop: false,
       resizable: false, //turn off to lock size 
       transparent: false,
       webPreferences: {
@@ -67,7 +68,7 @@ const createWindow = () => {
         backgroundColor: '#555555',
     });
     mainWindow.loadURL(`file://${__dirname}/dist/index.html`);
-    //mainWindow.webContents.openDevTools();
+   // mainWindow.webContents.openDevTools();
 
     mainWindow.on('click', () => {
       mainWindow.hide();
@@ -86,7 +87,6 @@ const toggleWindow = () => {
 if (mainWindow.isVisible()) {
   mainWindow.hide();
 } else {
-    console.log('double tap');
   showWindow();
 }
 };
@@ -109,6 +109,26 @@ mainWindow.hide();
 
 ipcMain.on('reload-window', () => {
 mainWindow.loadURL(`file://${path.join(__dirname, 'index.html')}`);
+});
+
+ipcMain.on('startValidation', () => {
+  console.log("Let's gooooooo");
+  mainWindow.hide();
+
+  LogReader.getLogFile();
+  LogReader.manualLogLocation();  
+  LogReader.beginReporting();
+
+  var interval = setInterval(function() {
+    var bool = LogReader.report();
+    if (bool) {
+        decklist = LogReader.reportDecklist();
+        for (var i in decklist) {
+            console.log(decklist[i]);
+        }
+        clearInterval(interval);
+    }
+}, 5000);
 });
 
 

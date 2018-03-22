@@ -27,8 +27,10 @@ export class LoginComponent implements OnInit {
   }
 
   login(nEmail: string){
-    this.config.login(nEmail).subscribe(res => 
-    this.postLog(res['id']));
+   // this.config.login(nEmail).subscribe(res => 
+   // this.postLog(res['id']));
+   this.router.navigate(['decklists']);
+
   }
   
   postLog(uID: string){

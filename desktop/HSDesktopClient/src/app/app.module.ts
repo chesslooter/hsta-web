@@ -14,6 +14,7 @@ import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
 import { ConfigService } from './config.service';
 import {FormsModule} from '@angular/forms';
+import { NgxElectronModule } from 'ngx-electron';
 
 
 const appRoutes: Routes = [
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AlertModule.forRoot(),
     HttpModule,
-    FormsModule
+    FormsModule,
+    NgxElectronModule
   ],
   providers: [
     DataService,

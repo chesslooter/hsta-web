@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ElectronService } from 'ngx-electron';
 
 @Injectable()
 export class ConfigService {
   private url = 'http://192.168.1.12:3000';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private electronService: ElectronService) { }
 
   getUserDecklists(userid) {
     return this.http.get(this.url + '/api/get_user_decklists?userid=' + userid).map(res => res.json());
@@ -34,6 +34,11 @@ export class ConfigService {
 
   login(email) {
     return this.http.get(this.url + '/api/login?email=' + email).map(res => res.json());
+  }
+
+  verify(){
+    console.log('Boop');
+    this.electronService.ipcRenderer.send('startValidation');
   }
 
 }

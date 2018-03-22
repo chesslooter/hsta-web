@@ -7,7 +7,6 @@ import { DataService } from "../data.service";
 import { Router } from '@angular/router';
 import { ConfigService } from '../config.service';
 
-
 @Component({
   selector: 'app-decklists',
   templateUrl: './decklists.component.html',
@@ -18,6 +17,10 @@ export class DecklistsComponent implements OnInit {
   constructor(private data: DataService, private router: Router, private config: ConfigService) { }
 
   email: string;
+  nDeckName: string;
+  nDeckCode: string;
+  decks = [];
+  deckCodes = [];
 
   ngOnInit() {
     this.data.currentMessage.subscribe(message => this.email = message);
@@ -27,17 +30,15 @@ export class DecklistsComponent implements OnInit {
        // .subscribe(response => console.log(response.text()));
   }
 
+  addDeck(deckName: string, deckCode: string){
+    if(deckName && deckCode){
+      this.decks.push(deckName);
+      this.deckCodes.push(deckCode);
+      this.config.addDeck(this.email, deckCode,deckName)
+        .subscribe(response => console.log(response));
 
-  decks = ['Murloc Paladin', 'Cube Lock', 'I Pay To Win'];
-
-  addDeck(deckName: string){
-    if(deckName){
-      this.decks.push(deckName
-      );
-      /*this.sendDeck(deckCode)
-  .subscribe(success => {
-    if(success) this.decks.push(deckName
-  )});*/
+      this.nDeckName = "";
+      this.nDeckCode ="";     
     }
   }
 

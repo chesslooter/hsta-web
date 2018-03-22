@@ -22,7 +22,5 @@ export class LoginComponent implements OnInit {
   login(nEmail: string){
     this.data.changeMessage(nEmail);
     this.router.navigate(['decklists']);
-  }
-
-   
+  }   
 }

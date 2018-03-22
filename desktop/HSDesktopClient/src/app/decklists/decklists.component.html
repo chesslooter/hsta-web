@@ -3,23 +3,24 @@
 
   <div class="row justify-content-center">
     <p>
-      Enter your decks below and hit "Add" to
-      <br> add them to your deck. Once all decks are
-      <br> entered, proceed to Validation.
+      Hello {{email}}! Enter your decks below and 
+      <br>hit "Add" to add them to your deck. Once all decks are
+      <br>entered, proceed to Validation.
     </p>
   </div>
   <div class="row justify-content-center">
     <div id="inputs" class="col-md-auto">
-      <input id="deckName" #newDeck newDeck.value=''  type="text" class="form-control"
-        placeholder="Deck Name">
+      <input #newDeck   type="text" class="form-control"
+        placeholder="Deck Name" name="nDeckName" [(ngModel)]="nDeckName" required>
     </div>
     <div id="inputs" class="col-md-auto">
-      <input id="deckCode" #newDeckCode type="text" class="form-control" placeholder="Deck Code">
+      <input #newDeckCode type="text" class="form-control" placeholder="Deck Code"
+      name="nDeckCode" [(ngModel)]="nDeckCode" required>
     </div>
   </div>
   <div class="row justify-content-center">
     <div id="inputs" class="col-md-auto">
-      <button (click)="addDeck(newDeck.value)" type="button" class="btn btn-primary">Add</button>
+      <button [disabled]="deckForm.form.invalid" (click)="addDeck(newDeck.value, newDeckCode.value)" type="button" class="btn btn-primary">Add</button>
     </div>
     <div id="inputs" class="col-md-auto">
       <button [disabled]="!decksEntered()" type="button" class="btn btn-primary" (click)="validate()" >Go to Validation</button>

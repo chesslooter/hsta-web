@@ -75,8 +75,9 @@ export class DecklistsComponent implements OnInit {
   deleteDeck(deckName: string) {
     var i = this.decks.indexOf(deckName);
     if(i != -1){
-      this.decks.splice(i,1);
-      //this.deckCodes.splice(i,1);
+      this.config.deleteDeck(this.userID, this.deckCodes[i])
+      this.decks.splice(i,1);      
+      this.deckCodes.splice(i,1);
     } 
 
     

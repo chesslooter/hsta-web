@@ -112,9 +112,6 @@ mainWindow.loadURL(`file://${path.join(__dirname, 'index.html')}`);
 });
 
 ipcMain.on('startValidation', () => {
-  console.log("Let's gooooooo");
-  mainWindow.hide();
-
   LogReader.getLogFile();
   LogReader.beginReporting();
 

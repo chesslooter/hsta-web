@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class ConfigService {
-  private url = 'https://tranquil-eyrie-40858.herokuapp.com';
+  private url = 'https://fathomless-falls-67570.herokuapp.com/';
   //private url = 'http://192.168.1.12:3000'; //Test URL for running server when not pushed to Heroku
   //private url = 'http://localhost:3000';
 

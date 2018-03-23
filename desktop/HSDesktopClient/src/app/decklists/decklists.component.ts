@@ -37,7 +37,9 @@ export class DecklistsComponent implements OnInit {
     
   }
 
-  postGetDecks(deck: string[]){        
+  postGetDecks(deck: string[]){  
+    console.log(deck); 
+    this.decks = deck;     
     this.data.changeDecks(this.decks);
     this.data.changeDeckCodes(this.deckCodes);
     console.log(this.decks);

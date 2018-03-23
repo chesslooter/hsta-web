@@ -28,19 +28,20 @@ export class DecklistsComponent implements OnInit {
     this.data.currentUserID.subscribe(message => this.userID = message);
     this.data.currentEmail.subscribe(message => this.email = message);
     this.config.getUserDecklists(this.userID)
-      .subscribe(response => console.log(response));
+      .subscribe(response => this.postGetDecks(response.deck_names));
     //Need to hook up decks and deckCodes to this function response  
-    this.data.currentDecks.subscribe(decks => this.decks = decks); //Remove once adding decklists works
-    this.data.currentDeckCodes.subscribe(deckCodes => this.deckCodes); //Remove once adding decklists works
+    //this.data.currentDecks.subscribe(decks => this.decks = decks); //Remove once adding decklists works
+    //this.data.currentDeckCodes.subscribe(deckCodes => this.deckCodes); //Remove once adding decklists works
+    console.log(this.decks);
+
+    
   }
 
-  postGetDecks(){    
+  postGetDecks(deck: string[]){        
     this.data.changeDecks(this.decks);
     this.data.changeDeckCodes(this.deckCodes);
-  }
-
-  ngAfterInit() {
-    
+    console.log(this.decks);
+  
   }
 
   addDeck(deckName: string, deckCode: string) {

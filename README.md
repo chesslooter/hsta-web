@@ -7,8 +7,10 @@ In general this shouldn't change, but should help reduce any issues we have betw
 
 We will be branching shortly to differentiate between PC and Mac - this makes a difference with Electron.
 
-#Testing
+#Testing and Building
 Testing for all non-electron required portions can be done with ng serve, after navigating to ~\HSTA\desktop\HSDesktopClient. This opens a window in browser on http://localhost:4200/ where testing can be done. 
 All changes are automatically recompiled after changes are saved, so ng serve can remain on while changes are made - there is no need to stop and start when modifying.
+
+In order to build the app, make sure npm install has been run and then type npm run electron-build. 
 
 Contact Jake on Discord with any build questions, especially early on in the build.

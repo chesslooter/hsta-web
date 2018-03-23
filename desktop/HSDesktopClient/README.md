@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+# Testing and Building
+Testing for all non-electron required portions can be done with ng serve, after navigating to ~\HSTA\desktop\HSDesktopClient. This opens a window in browser on http://localhost:4200/ where testing can be done. 
+All changes are automatically recompiled after changes are saved, so ng serve can remain on while changes are made - there is no need to stop and start when modifying.
+
+In order to build the app, make sure npm install has been run and then type npm run electron-build. 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

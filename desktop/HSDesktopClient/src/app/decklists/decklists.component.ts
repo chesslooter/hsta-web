@@ -25,7 +25,6 @@ export class DecklistsComponent implements OnInit {
   deckCodes = [];
 
   ngOnInit() {
-
     this.data.currentUserID.subscribe(message => this.userID = message);
     this.data.currentEmail.subscribe(message => this.email = message);
     this.config.getUserDecklists(this.userID)
@@ -70,5 +69,15 @@ export class DecklistsComponent implements OnInit {
       return (this.decks.length > 0)
     }
     return false;
+  }
+
+  deleteDeck(deckName: string) {
+    var i = this.decks.indexOf(deckName);
+    if(i != -1){
+      this.decks.splice(i,1);
+      //this.deckCodes.splice(i,1);
+    } 
+
+    
   }
 }

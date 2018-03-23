@@ -6,9 +6,9 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class ConfigService {
-  //private url = 'https://tranquil-eyrie-40858.herokuapp.com';
+  private url = 'https://tranquil-eyrie-40858.herokuapp.com';
   //private url = 'http://192.168.1.12:3000'; //Test URL for running server when not pushed to Heroku
-  private url = 'http://localhost:3000';
+  //private url = 'http://localhost:3000';
 
   constructor(private http: Http, private electronService: ElectronService) { }
 
@@ -22,6 +22,7 @@ export class ConfigService {
   }
 
   deleteDeck(userid, deckcode) {
+    console.log('delete that');
     return this.http.get(this.url + '/api/delete_deck?userid=' + 
             userid + '&deckcode=' + deckcode).map(res => res.json());
   }

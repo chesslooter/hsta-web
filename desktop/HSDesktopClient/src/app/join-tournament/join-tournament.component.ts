@@ -17,6 +17,12 @@ export class JoinTournamentComponent implements OnInit {
   ngOnInit() {
   }
 
+  joinTournament() {
+    //TODO: add logic to check if tournament is valid. If so, open up option to select decks with number 
+    //equal to those valid for the tournament
+    this.router.navigate(['match']);
+  }
+
   back() {
     this.router.navigate(['menu']);
   }

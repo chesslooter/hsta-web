@@ -111,6 +111,10 @@ ipcMain.on('reload-window', () => {
 mainWindow.loadURL(`file://${path.join(__dirname, 'index.html')}`);
 });
 
+ipcMain.on('kill', () => {
+  app.quit();
+});
+
 ipcMain.on('startValidation', () => {
   LogReader.getLogFile();
   LogReader.beginReporting();

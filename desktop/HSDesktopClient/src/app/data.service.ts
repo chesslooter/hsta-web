@@ -4,12 +4,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class DataService {
 
-  private emailSource = new BehaviorSubject<string>("");
+  private battleTagSource = new BehaviorSubject<string>("");
   private userIDSource = new BehaviorSubject<string>("");
   private decksSource = new BehaviorSubject<string[]>([]);
   private deckCodesSource = new BehaviorSubject<string[]>([]);
 
-  currentEmail = this.emailSource.asObservable();
+  currentBattleTag = this.battleTagSource.asObservable();
   currentUserID = this.userIDSource.asObservable();
   currentDecks = this.decksSource.asObservable();
   currentDeckCodes = this.deckCodesSource.asObservable();
@@ -20,8 +20,8 @@ export class DataService {
     this.userIDSource.next(ID)
   }
 
-  changeEmail(email: string) {
-    this.emailSource.next(email)
+  changeBattleTag(battleTag: string) {
+    this.battleTagSource.next(battleTag)
   }
 
   changeDecks(decks: string[]) {

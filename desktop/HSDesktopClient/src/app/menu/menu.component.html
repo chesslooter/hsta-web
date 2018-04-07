@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row justify-content-center"> 
+    <p>Welcome {{battleTag}}! To check your currently entered decklists,
+      <br> or to add, edit, or remove them, click "Manage Decklists".
+      <br> Once your decks are set, proceed to "Enter Tournament".
+    </p>
+  </div>
+  <div class="row justify-content-center"> 
+      <div id="inputs" class="col-md-auto">
+          <button (click)="decklists()" type="button" class="btn btn-primary">Manage Decklists</button>
+        </div>
+        <div id="inputs" class="col-md-auto">
+          <button (click)="enterTournament()" type="button" class="btn btn-primary">Enter Tournament</button>
+        </div>
+        <div id="inputs" class="col-md-auto">
+            <button (click)="exit()" type="button" class="btn btn-danger">Exit</button>
+          </div>
+  </div>
+</div>

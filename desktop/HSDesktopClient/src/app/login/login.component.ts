@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
 import { Router } from '@angular/router';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { ConfigService } from '../config.service';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
-
-
+//TODO: Change email to Battletag
 
 @Component({
   selector: 'app-login',
@@ -18,16 +17,16 @@ export class LoginComponent implements OnInit {
   constructor(private data: DataService, private router: Router, private config: ConfigService) { }
 
   userID : string;
-  email: string;
+  battleTag: string;
   success: boolean;
 
   ngOnInit() {
     this.data.currentUserID.subscribe(ID => this.userID = ID);
-    this.data.currentEmail.subscribe(mail => this.email = mail);
+    this.data.currentBattleTag.subscribe(battle => this.battleTag = battle);
   }
 
-  login(nEmail: string){
-   this.config.login(nEmail).subscribe(res => 
+  login(nBattleTag: string){
+   this.config.login(nBattleTag).subscribe(res => 
     this.postLog(res['id']));
   }
   
@@ -35,14 +34,14 @@ export class LoginComponent implements OnInit {
     this.userID = uID;
     console.log(uID);
     this.data.changeUserID(this.userID);
-    this.data.changeEmail(this.email);
-    this.router.navigate(['decklists']);
+    this.data.changeBattleTag(this.battleTag);
+    this.router.navigate(['menu']);
   }
 
-  createUser(nEmail: string){
-    this.config.createUser(nEmail).subscribe(response => console.log(response));    
+  createUser(nBattleTag: string){
+    this.config.createUser(nBattleTag).subscribe(response => console.log(response));    
     this.data.changeUserID(this.userID);
-    this.data.changeEmail(this.email);
-    this.router.navigate(['decklists']);
+    this.data.changeBattleTag(this.battleTag);
+    this.router.navigate(['menu']);
   }
 }

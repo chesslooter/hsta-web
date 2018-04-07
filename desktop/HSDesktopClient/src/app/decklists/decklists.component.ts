@@ -18,7 +18,7 @@ export class DecklistsComponent implements OnInit {
   }
 
   userID: string;
-  email: string;
+  battleTag: string;
   nDeckName: string;
   nDeckCode: string;
   decks = [];
@@ -26,26 +26,25 @@ export class DecklistsComponent implements OnInit {
 
   ngOnInit() {
     this.data.currentUserID.subscribe(message => this.userID = message);
-    this.data.currentEmail.subscribe(message => this.email = message);
+    this.data.currentBattleTag.subscribe(message => this.battleTag = message);
     this.config.getUserDecklists(this.userID)
-      .subscribe(response => this.postGetDecks(response.deck_names));
+      .subscribe(response => this.postGetDecks(response.deck_names,response.decks));
     //Need to hook up decks and deckCodes to this function response  
     //this.data.currentDecks.subscribe(decks => this.decks = decks); //Remove once adding decklists works
     //this.data.currentDeckCodes.subscribe(deckCodes => this.deckCodes); //Remove once adding decklists works
-    console.log(this.decks);
-
-    
   }
 
-  postGetDecks(deck: string[]){        
-    this.data.changeDecks(this.decks);
-    this.data.changeDeckCodes(this.deckCodes);
-    console.log(this.decks);
-  
+  postGetDecks(deck: string[],deckStrings: string[]){  
+    //Set decks with info from server
+    this.data.changeDecks(deck);
+    this.data.changeDeckCodes(deckStrings);
+    
+    //Subscribe to decks and Deck Codes
+    this.data.currentDecks.subscribe(decks=> this.decks = decks);
+    this.data.currentDeckCodes.subscribe(deckCodes=> this.deckCodes = deckCodes); 
   }
 
   addDeck(deckName: string, deckCode: string) {
-    console.log('start');
     if (deckName && deckCode) {
       this.decks.push(deckName);
       this.deckCodes.push(deckCode);
@@ -75,11 +74,10 @@ export class DecklistsComponent implements OnInit {
   deleteDeck(deckName: string) {
     var i = this.decks.indexOf(deckName);
     if(i != -1){
-      this.config.deleteDeck(this.userID, this.deckCodes[i])
+      this.config.deleteDeck(this.userID, this.deckCodes[i]);
       this.decks.splice(i,1);      
       this.deckCodes.splice(i,1);
-    } 
-
-    
+    }    
   }
+  
 }

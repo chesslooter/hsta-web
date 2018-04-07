@@ -1,3 +1,20 @@
-<p>
-  join-tournament works!
-</p>
+<div class="container">
+    <form #tournamentForm="ngForm">
+      <div class="row justify-content-center">
+        <div id="inputs" class="col-md-auto">
+          <input #nTournament type="text" class="form-control" placeholder="TournamentID" name="tournament" [(ngModel)]="tournament" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div id="inputs" class="col-md-auto">
+          <button [disabled]="tournamentForm.form.invalid" (click)="joinTournament(nTournament.value)" type="button" class="btn btn-primary">Join Tournament</button>
+        </div>
+        <div id="inputs" class="col-md-auto">
+          <button (click)="back()" type="button" class="btn btn-primary">Back</button>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <p>Add stuff to select decks here</p>
+      </div>
+    </form>
+  </div>

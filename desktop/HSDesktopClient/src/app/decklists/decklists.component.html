@@ -20,8 +20,8 @@
         <button [disabled]="deckForm.form.invalid" (click)="addDeck(newDeck.value, newDeckCode.value)" type="button" class="btn btn-primary">Add</button>
       </div>
       <div id="inputs" class="col-md-auto">
-        <button [disabled]="!decksEntered()" type="button" class="btn btn-primary" (click)="validate()">Go to Validation</button>
-      </div>
+          <button (click)="back()" type="button" class="btn btn-primary">Back</button>
+        </div>
     </div>
     <div class="row justify-content-center">
       <ul>

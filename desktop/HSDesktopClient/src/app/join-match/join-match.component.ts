@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from "../data.service";
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ConfigService } from '../config.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-join-match',
@@ -7,9 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JoinMatchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: DataService, private router: Router, private config: ConfigService) { }
 
   ngOnInit() {
+  }
+
+  joinMatch() {
+    //API call with logic to handle successful match join. If successful, proceed to 'ban'
+
+    this.router.navigate(['ban']);
+  }
+
+  back() {
+    this.router.navigate(['tournament']);
   }
 
 }

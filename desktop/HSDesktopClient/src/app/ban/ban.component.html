@@ -1,3 +1,24 @@
-<p>
-  ban works!
-</p>
+<div class="container">
+    <form #banForm="ngForm">
+      <div class="row justify-content-center">
+        <p>
+          Hello {{battleTag}}! Select one deck from the list
+          <br>below to ban and hit "Ban" to ban that deck for your
+          <br> opponent. Then hit "Continue" to advance to validation
+        </p>
+      </div>
+      <div class="row justify-content-center">
+        <ul>
+          <li *ngFor="let deck of decks">{{deck}}     <button type="button" (click)="deleteDeck(deck)" class="btn btn-danger">X</button></li>
+        </ul>
+      </div>
+      <div class="row justify-content-center">
+          <div id="inputs" class="col-md-auto">
+            <button [disabled]="banForm.form.invalid" (click)="ban()" type="button" class="btn btn-primary">Continue</button>
+          </div>
+          <div id="inputs" class="col-md-auto">
+              <button (click)="back()" type="button" class="btn btn-primary">Back</button>
+            </div>
+        </div>
+    </form>
+  </div>

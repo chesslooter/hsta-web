@@ -14,8 +14,7 @@ import { ConfigService } from '../config.service';
 })
 export class DecklistsComponent implements OnInit {
 
-  constructor(private data: DataService, private router: Router, private config: ConfigService) {
-  }
+  constructor(private data: DataService, private router: Router, private config: ConfigService) {}
 
   userID: string;
   battleTag: string;
@@ -60,8 +59,8 @@ export class DecklistsComponent implements OnInit {
     }
   }
 
-  validate() {
-    this.router.navigate(['validation']);
+  back() {
+    this.router.navigate(['menu']);
   }
 
   decksEntered(): boolean {

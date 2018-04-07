@@ -3,3 +3,12 @@
     width: 520px;
     height: 440px;
 }
+
+
+div {
+    padding-top: 5px;/*
+    border-color: red;
+    border-width: 2px;
+    border-style: solid;
+*/
+}

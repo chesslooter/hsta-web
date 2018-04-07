@@ -26,7 +26,7 @@ export class ValidationComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['decklists']);
+    this.router.navigate(['ban']);
   }
 
   validate() {

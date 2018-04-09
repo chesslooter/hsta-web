@@ -23,12 +23,18 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  home() {
+    this.router.navigate(['home']);
+  }
+
   login() {
+    console.log('logging in');
     this.data.changeLoggedIn(true);
     this.router.navigate(['home']);
   }
 
   logout(){
+    console.log('logging out');
     this.data.changeLoggedIn(false);
     this.router.navigate([''])
     }

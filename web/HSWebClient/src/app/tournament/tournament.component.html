@@ -7,13 +7,20 @@
 
     <thead>
       <tr>
+        <th></th>
         <th>MatchID</th>
         <th>Opponent 1</th>
         <th>Opponent 2</th>
+        <th>Winner</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let match of matches">
+        <td>
+          <button (click)=edit(match) type="button" class="btn btn-info btn-sm">Edit</button>
+          <button (click)=delete(match) type="button" class="btn btn-danger btn-sm">Delete</button>
+        </td>
         <td *ngFor="let data of match">{{ data }} </td>
       </tr>
     </tbody>

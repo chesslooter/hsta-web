@@ -3,6 +3,16 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class DataService {
+  private loggedInSource = new BehaviorSubject<boolean>(false);
+
+  currentLoggedIn = this.loggedInSource.asObservable();
+
+  constructor() { }
+
+  changeLoggedIn(status: boolean) {
+    this.loggedInSource.next(status);
+  }
+
 /*
   private battleTagSource = new BehaviorSubject<string>("");
   private userIDSource = new BehaviorSubject<string>("");

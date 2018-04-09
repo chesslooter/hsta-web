@@ -1,23 +1,12 @@
 <div class="container">
   <div class="row justify-content-center">
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let tournament of tournaments">
-          <td>{{tournament}}</td>
-          <button>Enter</button>
-        </tr>
-      </tbody>
-    </table>
+      <div class="list-group">        
+        <button type="button" class="list-group-item list-group-item-action" *ngFor="let tournament of tournaments">
+          {{tournament}}
+        </button>      
+    </div>
   </div>
-  <div class="row justify-content-center">
-    <button>Create</button>
+  <div class="row justify-content-center" style="margin-top: 2.5%">
+    <button (click)="create()" type="button" class="btn btn-primary">Create</button>
   </div>  
-</div>
+</div>  

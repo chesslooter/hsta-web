@@ -11,7 +11,7 @@ export class TournamentCreateComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  nTourName: string;
+  nTourName: string;    
   nTourDesc: string;
   nTourPlayers: string;
 

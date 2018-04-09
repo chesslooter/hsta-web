@@ -11,6 +11,7 @@ import { TournamentCreateComponent } from './tournament-create/tournament-create
 import { NavbarComponent } from './navbar/navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {FormsModule} from '@angular/forms';
+import { DataService } from './data.service';
 
 
 const appRoutes: Routes = [
@@ -47,7 +48,9 @@ const appRoutes: Routes = [
     HttpModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

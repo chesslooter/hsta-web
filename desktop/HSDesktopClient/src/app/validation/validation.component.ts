@@ -39,7 +39,4 @@ export class ValidationComponent implements OnInit {
     //Button should be disabled up until "Match End"
   }
 
-  decksEntered():boolean{
-    return(this.decks.length > 0);
-  }
 }

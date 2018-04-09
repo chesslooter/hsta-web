@@ -2,7 +2,10 @@
   <form #loginForm="ngForm">
     <div class="row justify-content-center">
       <div id="inputs" class="col-md-auto">
-        <input #nBattleTag type="text" class="form-control" placeholder="Battle Tag" name="battleTag" [(ngModel)]="battleTag" required>
+        <input #nBattleTag type="text" class="form-control" id="BattleTag" placeholder="BattleTag" name="battleTag" [(ngModel)]="battleTag" required>
+        <div class="invalid-feedback">
+          Invalid BattleTag
+        </div>
       </div>
     </div>
     <div class="row justify-content-center">

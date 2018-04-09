@@ -1,24 +1,27 @@
 <div class="container">
-    <form #banForm="ngForm">
-      <div class="row justify-content-center">
-        <p>
-          Hello {{battleTag}}! Select one deck from the list
-          <br>below to ban and hit "Ban" to ban that deck for your
-          <br> opponent. Then hit "Continue" to advance to validation
-        </p>
-      </div>
-      <div class="row justify-content-center">
-        <ul>
-          <li *ngFor="let deck of decks">{{deck}}     <button type="button" (click)="deleteDeck(deck)" class="btn btn-danger">X</button></li>
-        </ul>
-      </div>
-      <div class="row justify-content-center">
-          <div id="inputs" class="col-md-auto">
-            <button [disabled]="banForm.form.invalid" (click)="ban()" type="button" class="btn btn-primary">Continue</button>
-          </div>
-          <div id="inputs" class="col-md-auto">
-              <button (click)="back()" type="button" class="btn btn-primary">Back</button>
-            </div>
+  <form #banForm="ngForm">
+    <div class="row justify-content-center">
+      <p>
+        Select one deck from the list below to
+        <br>ban and hit "Continue" to advance to validation.
+      </p>
+    </div>
+      <div *ngFor="let deck of opDecks; let idx = index" class="row justify-content-center">
+        <div class="form-check">
+          <input class="form-check-input" [checked]="idx===0" [value]="deck" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" (change)="onSelect(deck)">
+          <label class="form-check-label" for="exampleRadios1">
+            {{deck}}
+          </label>
         </div>
-    </form>
-  </div>
+      </div>
+
+    <div class="row justify-content-center">
+      <div id="inputs" class="col-md-auto">
+        <button [disabled]="banForm.form.invalid" (click)="ban()" type="button" class="btn btn-primary">Continue</button>
+      </div>
+      <div id="inputs" class="col-md-auto">
+        <button (click)="back()" type="button" class="btn btn-primary">Back</button>
+      </div>
+    </div>
+  </form>
+</div>

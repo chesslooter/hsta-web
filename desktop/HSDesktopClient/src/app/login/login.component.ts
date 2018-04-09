@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private data: DataService, private router: Router, private config: ConfigService) { }
 
-  userID : string;
+  userID: string;
   battleTag: string;
   success: boolean;
 
@@ -25,21 +25,28 @@ export class LoginComponent implements OnInit {
     this.data.currentBattleTag.subscribe(battle => this.battleTag = battle);
   }
 
-  login(nBattleTag: string){
-   this.config.login(nBattleTag).subscribe(res => 
-    this.postLog(res['id']));
-  }
-  
-  postLog(uID: string){
-    this.userID = uID;
-    console.log(uID);
-    this.data.changeUserID(this.userID);
-    this.data.changeBattleTag(this.battleTag);
-    this.router.navigate(['menu']);
+  login(nBattleTag: string) {
+    this.config.login(nBattleTag).subscribe(res =>
+      this.postLog(res['success'], res['id']));
   }
 
-  createUser(nBattleTag: string){
-    this.config.createUser(nBattleTag).subscribe(response => console.log(response));    
+  postLog(success: string, uID: string) {
+    if (success) {
+      this.userID = uID;
+      console.log(uID);
+      this.data.changeUserID(this.userID);
+      this.data.changeBattleTag(this.battleTag);
+      this.router.navigate(['menu']);
+    }
+    else {
+      document.getElementById('BattleTag').className = "form-control is-invalid";
+      console.log("login failed");
+    }
+  }
+
+  createUser(nBattleTag: string) {
+    this.config.createUser(nBattleTag).subscribe(res =>
+      this.postLog(res['success'], res['id']));
     this.data.changeUserID(this.userID);
     this.data.changeBattleTag(this.battleTag);
     this.router.navigate(['menu']);

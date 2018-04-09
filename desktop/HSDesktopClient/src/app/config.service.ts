@@ -47,8 +47,14 @@ export class ConfigService {
     });
   }
 
+  joinTournament(userID, tournamentID){
+    return this.http.get(this.url + '/api/join_tournament?userid='+userID +'&tournamentid='+tournamentID);
+  }
+
   exit(){
     this.electronService.ipcRenderer.send('kill');
   }
+
+
 
 }

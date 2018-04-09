@@ -10,12 +10,25 @@ import { ConfigService } from '../config.service';
 })
 export class BanComponent implements OnInit {
 
-  constructor(private data: DataService, private router: Router, private config: ConfigService) {}
+  constructor(private data: DataService, private router: Router, private config: ConfigService) { }
 
-  decks = ['Murloc Paladin','Cubelock','Secret Hunter'];
-  deckCodes = [];
+  opDecks = ['Murloc Paladin', 'Cubelock', 'Secret Hunter'];
+  opDeckCodes = [];
+  bannedDeck;
+  
 
   ngOnInit() {
+    this.getOpponentDecks();
+    this.onSelect(this.opDecks[0]);  
+
+  }
+
+  onSelect(deck) {
+    this.bannedDeck = deck;
+  }
+
+  getOpponentDecks() {
+
   }
 
   back() {
@@ -23,6 +36,7 @@ export class BanComponent implements OnInit {
   }
 
   ban() {
+    console.log(this.bannedDeck);
     this.router.navigate(['validation']);
   }
 

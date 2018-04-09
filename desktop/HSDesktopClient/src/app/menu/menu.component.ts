@@ -13,10 +13,27 @@ export class MenuComponent implements OnInit {
   constructor(private data: DataService, private router: Router, private config: ConfigService) { }
 
   battleTag: string;
+  userID: string;
+  decks = [];
+  deckCodes = [];
 
   ngOnInit() {
+    this.data.currentUserID.subscribe(message => this.userID = message);
+    this.data.currentBattleTag.subscribe(message => this.battleTag = message);
+    this.config.getUserDecklists(this.userID)
+      .subscribe(response => this.postGetDecks(response.deck_names,response.decks));
     this.data.currentBattleTag.subscribe(message => this.battleTag = message);
 
+  }
+
+  postGetDecks(deck: string[],deckStrings: string[]){  
+    //Set decks with info from server
+    this.data.changeDecks(deck);
+    this.data.changeDeckCodes(deckStrings);
+    
+    //Subscribe to decks and Deck Codes
+    this.data.currentDecks.subscribe(decks=> this.decks = decks);
+    this.data.currentDeckCodes.subscribe(deckCodes=> this.deckCodes = deckCodes); 
   }
 
   decklists() {

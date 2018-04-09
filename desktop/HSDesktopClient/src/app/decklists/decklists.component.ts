@@ -26,21 +26,9 @@ export class DecklistsComponent implements OnInit {
   ngOnInit() {
     this.data.currentUserID.subscribe(message => this.userID = message);
     this.data.currentBattleTag.subscribe(message => this.battleTag = message);
-    this.config.getUserDecklists(this.userID)
-      .subscribe(response => this.postGetDecks(response.deck_names,response.decks));
-    //Need to hook up decks and deckCodes to this function response  
-    //this.data.currentDecks.subscribe(decks => this.decks = decks); //Remove once adding decklists works
-    //this.data.currentDeckCodes.subscribe(deckCodes => this.deckCodes); //Remove once adding decklists works
-  }
-
-  postGetDecks(deck: string[],deckStrings: string[]){  
-    //Set decks with info from server
-    this.data.changeDecks(deck);
-    this.data.changeDeckCodes(deckStrings);
-    
-    //Subscribe to decks and Deck Codes
     this.data.currentDecks.subscribe(decks=> this.decks = decks);
     this.data.currentDeckCodes.subscribe(deckCodes=> this.deckCodes = deckCodes); 
+
   }
 
   addDeck(deckName: string, deckCode: string) {

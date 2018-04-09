@@ -30,4 +30,8 @@ export class TournamentComponent implements OnInit {
     const modalRef = this.modalService.open(MatchComponent, {centered: true});
   }
 
+  back() {
+    this.router.navigate(['home']);
+  }
+
 }

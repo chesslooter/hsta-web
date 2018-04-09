@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  tournaments = ['tournament 1', 'tournament 2','tournament 3'];
+
   constructor() { }
 
   ngOnInit() {

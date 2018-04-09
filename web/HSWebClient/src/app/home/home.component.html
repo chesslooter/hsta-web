@@ -1,3 +1,23 @@
-<p>
-  home works!
-</p>
+<div class="container">
+  <div class="row justify-content-center">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tournament of tournaments">
+          <td>{{tournament}}</td>
+          <button>Enter</button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row justify-content-center">
+    <button>Create</button>
+  </div>  
+</div>

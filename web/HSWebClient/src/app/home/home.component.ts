@@ -16,6 +16,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  goToTournament() {
+    this.router.navigate(['tournament']);
+  }
+
   create() {
     this.router.navigate(['tournamentCreate']);
   }

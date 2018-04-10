@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
       <div class="list-group">        
-        <button type="button" class="list-group-item list-group-item-action" *ngFor="let tournament of tournaments">
+        <button (click)="goToTournament()" type="button" class="list-group-item list-group-item-action" *ngFor="let tournament of tournaments">
           {{tournament}}
         </button>      
     </div>

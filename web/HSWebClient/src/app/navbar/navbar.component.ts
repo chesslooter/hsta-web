@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from "../data.service";
+import { Observable } from 'rxjs/Observable';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { catchError, retry } from 'rxjs/operators';
+
 
 
 @Component({
@@ -9,13 +14,23 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private data: DataService, private router: Router) { }
+
+  loggedIn: boolean = false;
 
   ngOnInit() {
+    this.data.currentLoggedIn.subscribe(message => this.loggedIn = message);
+
   }
 
   login() {
+    this.data.changeLoggedIn(true);
     this.router.navigate(['home']);
   }
+
+  logout(){
+    this.data.changeLoggedIn(false);
+    this.router.navigate([''])
+    }
 
 }

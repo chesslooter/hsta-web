@@ -13,6 +13,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import {FormsModule} from '@angular/forms';
 import { DataService } from './data.service';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MatchComponent } from './match/match.component';
+
 
 const appRoutes: Routes = [
   {
@@ -39,7 +42,8 @@ const appRoutes: Routes = [
     TournamentComponent,
     TournamentCreateComponent,
     NavbarComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    MatchComponent
   ],
   imports: [
     BrowserModule,
@@ -47,10 +51,12 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpModule,
     FormsModule,
+    NgbModule.forRoot(),
   ],
   providers: [
     DataService
   ],
+  entryComponents: [MatchComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

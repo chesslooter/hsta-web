@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  view(tournament: string){ 
+  view(tournament: JSON){ 
     this.data.changeActiveTournament(tournament);
     this.router.navigate(['tournament']);
   }

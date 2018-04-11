@@ -10,6 +10,8 @@ export class EditMatchComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal) { }
 
+  @Input() match;
+
   ngOnInit() {
   }
 

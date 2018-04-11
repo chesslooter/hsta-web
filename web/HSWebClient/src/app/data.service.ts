@@ -5,14 +5,20 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class DataService {
   private loggedInSource = new BehaviorSubject<boolean>(false);
   private activeTournamentSource = new BehaviorSubject<JSON>(null);
+  private deleteMatchSource = new BehaviorSubject<[""]>([""]);
 
   currentActiveTournament = this.activeTournamentSource.asObservable();
   currentLoggedIn = this.loggedInSource.asObservable();
+  currentMatch = this.deleteMatchSource.asObservable();
 
   constructor() { }
 
   changeLoggedIn(status: boolean) {
     this.loggedInSource.next(status);
+  }
+
+  changeDeleteMatch(match: [""]) {
+    this.deleteMatchSource.next(match);
   }
 
   changeActiveTournament(tournament: JSON) {

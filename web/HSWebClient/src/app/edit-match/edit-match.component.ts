@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-match',
@@ -8,12 +8,11 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditMatchComponent implements OnInit {
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  @Input() match;
 
   edit() {
     console.log('edit not yet implemented');

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-tournament-create',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TournamentCreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  nTourName: string;    
+  nTourDesc: string;
+  nTourPlayers: string;
 
   ngOnInit() {
+  }
+
+  create() {
+    //API call to attempt to create. Redirect on success
+
+    this.router.navigate(['home']);
+
+  }
+
+  cancel() {
+    this.router.navigate(['home']);
   }
 
 }

@@ -1,3 +1,17 @@
-<p>
-  tournament-create works!
-</p>
+<form #tournamentForm="ngForm">
+  <div id="inputs" class="form-group">
+    <label for="tournamentName">Tournament Name:</label>
+    <input [(ngModel)]="nTourName" name="name" type="input" class="form-control" id="tournamentName" placeholder="Name" required>
+  </div>
+  <div id="inputs" class="form-group">
+    <label for="tournamentDescription">Tournament Description:</label>
+    <textarea [(ngModel)]="nTourDesc" name="desc" class="form-control" id="tournamentDescription" rows="3" placeholder="Description"required></textarea>
+  </div>
+  <div id="inputs" class="form-group">
+    <label for="exampleFormControlTextarea1">Tournament Players:</label>
+    <textarea [(ngModel)]="nTourPlayers" name="players" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter all BattleTags seperated with commas (pasting encouraged)"required  ></textarea>
+  </div>
+  <button [disabled]="tournamentForm.form.invalid" (click)="create()" type="submit" class="btn btn-primary mb-2">Create</button>
+  <button (click)="cancel()" type="button" class="btn btn-danger mb-2">Cancel</button>
+
+</form>

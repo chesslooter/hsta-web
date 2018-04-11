@@ -11,6 +11,12 @@ import { TournamentCreateComponent } from './tournament-create/tournament-create
 import { NavbarComponent } from './navbar/navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {FormsModule} from '@angular/forms';
+import { DataService } from './data.service';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MatchComponent } from './match/match.component';
+import { EditMatchComponent } from './edit-match/edit-match.component';
+import { DeleteMatchComponent } from './delete-match/delete-match.component';
 
 
 const appRoutes: Routes = [
@@ -38,7 +44,10 @@ const appRoutes: Routes = [
     TournamentComponent,
     TournamentCreateComponent,
     NavbarComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    MatchComponent,
+    EditMatchComponent,
+    DeleteMatchComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +55,12 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpModule,
     FormsModule,
+    NgbModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
+  entryComponents: [MatchComponent, EditMatchComponent, DeleteMatchComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

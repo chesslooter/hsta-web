@@ -3,6 +3,22 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class DataService {
+  private loggedInSource = new BehaviorSubject<boolean>(false);
+  private activeTournamentSource = new BehaviorSubject<JSON>(null);
+
+  currentActiveTournament = this.activeTournamentSource.asObservable();
+  currentLoggedIn = this.loggedInSource.asObservable();
+
+  constructor() { }
+
+  changeLoggedIn(status: boolean) {
+    this.loggedInSource.next(status);
+  }
+
+  changeActiveTournament(tournament: JSON) {
+    this.activeTournamentSource.next(tournament);
+  }
+
 /*
   private battleTagSource = new BehaviorSubject<string>("");
   private userIDSource = new BehaviorSubject<string>("");

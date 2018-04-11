@@ -1,6 +1,92 @@
+<ng-template #editMatchModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Match</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label>Player1 BattleTag</label>
+        <input class="form-control" type="text" placeholder="{{ match[1] }}" readonly>
+      </div>
+      <div class="form-group">
+        <label>Player2 BattleTag</label>
+        <input class="form-control" type="text" placeholder="{{ match[2] }}" readonly>
+      </div>
+      <div class="form-group">
+        <label>Winner</label>
+        <select class="form-control" id="winner">
+          <option>{{ match[1] }}</option>
+          <option>{{ match[2] }}</option>
+          <option>Not yet played</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select class="form-control" id="statusForm">
+          <option>Fair</option>
+          <option>Cheating</option>
+          <option>Not yet played</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="edit()">Edit</button>
+    <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #deleteMatchModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Delete Match</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h5>Are you sure you want to delete this match?  This action cannot be undone.</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
+    <button type="button" class="btn btn-light" (click)="c('Close click')">Cancel</button>
+  </div>
+</ng-template>
+
+<ng-template #createMatchModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Create Match</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label>Player1 BattleTag</label>
+        <select class="form-control" id="player1BattleTag">
+          <option *ngFor="let battletag of battletags">{{ battletag }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Player2 BattleTag</label>
+        <select class="form-control" id="player2BattleTag">
+          <option *ngFor="let battletag of battletags">{{ battletag }}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="create()">Create</button>
+    <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
 <div class="row justify-content">
   <h4>{{ tournament['name'] }}</h4>
-  <button (click)="create()" type="button" class="btn btn-primary ml-auto">Create New Match</button>
+  <button (click)="create(createMatchModal)" type="button" class="btn btn-primary ml-auto">Create New Match</button>
 </div>
   <table class="table table-hover">
     <caption>{{ tournament['name'] }}</caption>
@@ -18,8 +104,8 @@
     <tbody>
       <tr *ngFor="let match of matches">
         <td>
-          <button (click)=edit(match) type="button" class="btn btn-info btn-sm">Edit</button>
-          <button (click)=delete(match) type="button" class="btn btn-danger btn-sm">Delete</button>
+          <button (click)="edit(editMatchModal, match)" type="button" class="btn btn-info btn-sm">Edit</button>
+          <button (click)="delete(deleteMatchModal, match)" type="button" class="btn btn-danger btn-sm">Delete</button>
         </td>
         <td *ngFor="let data of match">{{ data }} </td>
       </tr>

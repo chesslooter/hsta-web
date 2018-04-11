@@ -13,6 +13,8 @@ export class EditMatchComponent implements OnInit {
   ngOnInit() {
   }
 
+  @Input() match;
+
   edit() {
     console.log('edit not yet implemented');
   }

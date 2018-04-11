@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -12,6 +12,8 @@ export class DeleteMatchComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  @Input() match;
 
   delete(match) {
     console.log('delete not yet implemented');

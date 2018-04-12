@@ -1,16 +1,27 @@
-# HSTA
-Developed for CS 506 at The University of Wisconsin-Madison
+# HSWebClient
 
-#Desktop Side
-Navigate to ~\HSTA\desktop\HSDesktopClient and run npm install to update dependencies after every pull
-In general this shouldn't change, but should help reduce any issues we have between computers
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
-We will be branching shortly to differentiate between PC and Mac - this makes a difference with Electron.
+## Development server
 
-#Testing and Building
-Testing for all non-electron required portions can be done with ng serve, after navigating to ~\HSTA\desktop\HSDesktopClient. This opens a window in browser on http://localhost:4200/ where testing can be done. 
-All changes are automatically recompiled after changes are saved, so ng serve can remain on while changes are made - there is no need to stop and start when modifying.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-In order to build the app, make sure npm install has been run and then type npm run electron-build. 
+## Code scaffolding
 
-Contact Jake on Discord with any build questions, especially early on in the build.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

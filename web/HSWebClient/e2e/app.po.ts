@@ -5,7 +5,47 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getLogin() {
+    return element(by.cssContainingText('button', 'Login'));
   }
+
+  getHomepage() {
+    return element(by.cssContainingText('button', 'HSTournamentHelper'));
+  }
+
+  getTournament1() {
+    return element(by.cssContainingText('button', 'tournament 1'));
+  }
+
+  getTournament2() {
+    return element(by.cssContainingText('button', 'tournament 2'));
+  }
+
+  getTournament3() {
+    return element(by.cssContainingText('button', 'tournament 3'));
+  }
+
+  getCreateTournament() {
+    return element(by.cssContainingText('button', 'Create'));
+  }
+
+  getBack() {
+    return element(by.cssContainingText('button', 'Create'));
+  }
+
+  fillTournamentName() {
+    var searchComment = element(by.id("tournamentName"));
+    searchComment.sendKeys('Test Tournament Name')
+  }
+
+  fillTournamentDescription() {
+    var searchComment = element(by.id("tournamentDescription"));
+    searchComment.sendKeys('Test Tournament Description')
+  }
+  
+  fillTournamnetPlayers() {
+    var searchComment = element(by.id("exampleFormControlTextarea1"));
+    searchComment.sendKeys('Test Tournament Battle.net')
+  }
+
 }

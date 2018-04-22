@@ -14,14 +14,18 @@ export class TournamentCreateComponent implements OnInit {
 
   nTourName: string;
   nTourDesc: string;
-  nTourPlayers: string;
+  numPlayers: string;
+
+
 
   ngOnInit() {
+
   }
 
   create() {
+    var number = +this.numPlayers;
     //API call to attempt to create. Redirect on success
-    this.config.createTournament(this.nTourName, 3, 1).subscribe(res => console.log(res));
+    this.config.createTournament(this.nTourName, number, 1).subscribe(res => console.log(res));
     this.router.navigate(['home']);
   }
 

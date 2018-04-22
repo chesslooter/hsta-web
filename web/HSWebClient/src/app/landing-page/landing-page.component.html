@@ -1,7 +1,20 @@
 <div class="container">
-  <div class="row justify-content-center">
-    <p>
-      Welcome to the HS Deck Tracker! Hit Login to sign in to your Blizzard account and begin managing your tournaments
-    </p>
-  </div>
+  <form #loginForm="ngForm">
+    <div class="row justify-content-center">
+      <div id="inputs" class="col-md-auto">
+        <input #nBattleTag type="text" class="form-control" id="BattleTag" placeholder="BattleTag" name="battleTag" [(ngModel)]="bTag" required>
+        <div class="invalid-feedback">
+          Invalid BattleTag
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div id="inputs" class="col-md-auto">
+        <button [disabled]="loginForm.form.invalid" (click)="login(nBattleTag.value)" type="button" class="btn btn-primary">Login</button>
+      </div>
+      <div id="inputs" class="col-md-auto">
+        <button [disabled]="loginForm.form.invalid" (click)="createUser(nBattleTag.value)" type="button" class="btn btn-primary">Create Account</button>
+      </div>
+    </div>
+  </form>
 </div>

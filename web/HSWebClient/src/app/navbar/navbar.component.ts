@@ -5,16 +5,18 @@ import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, retry } from 'rxjs/operators';
 
+import { ConfigService } from '../config.service';
+
 
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private data: DataService, private router: Router, private config: ConfigService) { }
 
   loggedIn: boolean = false;
 
@@ -30,6 +32,7 @@ export class NavbarComponent implements OnInit {
   login() {
     console.log('logging in');
     this.data.changeLoggedIn(true);
+    this.config.getTournaments(1).subscribe(res => this.data.changeActiveTournamentJson(res));
     this.router.navigate(['home']);
   }
 

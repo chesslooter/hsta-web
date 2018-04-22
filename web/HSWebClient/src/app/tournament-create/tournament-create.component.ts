@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfigService } from '../config.service';
 
 
 @Component({
@@ -9,9 +10,9 @@ import { Router } from '@angular/router';
 })
 export class TournamentCreateComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private config: ConfigService) { }
 
-  nTourName: string;    
+  nTourName: string;
   nTourDesc: string;
   nTourPlayers: string;
 
@@ -20,9 +21,8 @@ export class TournamentCreateComponent implements OnInit {
 
   create() {
     //API call to attempt to create. Redirect on success
-
+    this.config.createTournament(this.nTourName, 3, 1).subscribe(res => console.log(res));
     this.router.navigate(['home']);
-
   }
 
   cancel() {

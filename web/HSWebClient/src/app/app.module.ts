@@ -14,6 +14,7 @@ import {FormsModule} from '@angular/forms';
 import { DataService } from './data.service';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ConfigService} from "./config.service";
 
 
 const appRoutes: Routes = [
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
   ],
   providers: [
-    DataService
+    DataService,
+    ConfigService
   ],
   bootstrap: [AppComponent]
 })

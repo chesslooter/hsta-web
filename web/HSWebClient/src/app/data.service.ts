@@ -5,9 +5,11 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class DataService {
   private loggedInSource = new BehaviorSubject<boolean>(false);
   private activeTournamentSource = new BehaviorSubject<JSON>(null);
+  private activeTournamentJson = new BehaviorSubject<JSON>(null);
   private deleteMatchSource = new BehaviorSubject<[""]>([""]);
 
   currentActiveTournament = this.activeTournamentSource.asObservable();
+  currentActiveTournamentJson = this.activeTournamentJson.asObservable();
   currentLoggedIn = this.loggedInSource.asObservable();
   currentMatch = this.deleteMatchSource.asObservable();
 
@@ -23,6 +25,13 @@ export class DataService {
 
   changeActiveTournament(tournament: JSON) {
     this.activeTournamentSource.next(tournament);
+  }
+
+  changeActiveTournamentJson(tournament: JSON) {
+    console.log('changeActiveTournamentJson');
+    if(tournament['success']) {
+      this.activeTournamentJson.next(tournament);
+    }
   }
 
 /*

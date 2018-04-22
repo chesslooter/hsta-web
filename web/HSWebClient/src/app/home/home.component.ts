@@ -14,13 +14,15 @@ import { DataService } from "../data.service";
 export class HomeComponent implements OnInit {
 
   tournaments = ['tournament 1', 'tournament 2','tournament 3'];
+  //tournaments : JSON;
 
   constructor(private data: DataService, private router: Router) { }
 
   ngOnInit() {
+    //this.data.currentActiveTournamentJson.subscribe(res => console.log(res)) // this.tournaments = res)
   }
 
-  view(tournament: JSON){ 
+  view(tournament: JSON){
     this.data.changeActiveTournament(tournament);
     this.router.navigate(['tournament']);
   }
@@ -28,5 +30,5 @@ export class HomeComponent implements OnInit {
   create() {
     this.router.navigate(['tournamentCreate']);
   }
-  
+
 }

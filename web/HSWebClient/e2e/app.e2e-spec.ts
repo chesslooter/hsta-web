@@ -9,10 +9,6 @@ describe('hsweb-client App', () => {
     page = new AppPage();
   });
 
-  // it('should display welcome message', () => {
-  //   page.navigateTo();
-  //   expect(page.getParagraphText()).toEqual('Welcome to app!');
-  // });
 it('should log the user in', () => {
     page.navigateTo();
     page.getLogin().click().then(function() {
@@ -67,7 +63,7 @@ it('should fill out tournament info and create the tournament', () => {
     page.getCreateTournament().click();
     page.fillTournamentName();
     page.fillTournamentDescription();
-    page.fillTournamnetPlayers();
+    page.fillTournamentPlayers();
     page.getCreateTournament().click().then(function() {
       browser.waitForAngular();
       expect(browser.getCurrentUrl()).toContain('home');
@@ -75,8 +71,20 @@ it('should fill out tournament info and create the tournament', () => {
    
 })
 
-// This test is currently failing
-it('should checkout specific tounament page then return to main page', () => {
+// This test can be expanded when the form submission is implemented in testing
+it('should fill out tournament info and create the tournament', () => {
+  page.navigateTo();
+  page.getLogin().click();
+  page.getCreateTournament().click();
+  page.getCancel().click().then(function() {
+    browser.waitForAngular();
+    expect(browser.getCurrentUrl()).toContain('home');
+});
+ 
+})
+
+// checkout tournament 1
+it('should checkout specific tounament page 1 then return to main page', () => {
     page.navigateTo();
     page.getLogin().click();
     page.getTournament1().click();
@@ -84,7 +92,29 @@ it('should checkout specific tounament page then return to main page', () => {
       browser.waitForAngular();
       expect(browser.getCurrentUrl()).toContain('home');
   });
-
 })
+
+// checkout tournament 2
+it('should checkout specific tounament page 2 then return to main page', () => {
+  page.navigateTo();
+  page.getLogin().click();
+  page.getTournament2().click();
+  page.getBack().click().then(function() {
+    browser.waitForAngular();
+    expect(browser.getCurrentUrl()).toContain('home');
+});
+})
+
+// checkout tournament 3
+it('should checkout specific tounament page 3 then return to main page', () => {
+  page.navigateTo();
+  page.getLogin().click();
+  page.getTournament3().click();
+  page.getBack().click().then(function() {
+    browser.waitForAngular();
+    expect(browser.getCurrentUrl()).toContain('home');
+});
+})
+
 
 });

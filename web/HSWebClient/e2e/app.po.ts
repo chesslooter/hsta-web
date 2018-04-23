@@ -30,7 +30,11 @@ export class AppPage {
   }
 
   getBack() {
-    return element(by.cssContainingText('button', 'Create'));
+    return element(by.cssContainingText('button', 'Back'));
+  }
+
+  getCancel() {
+    return element(by.cssContainingText('button', 'Cancel'));
   }
 
   fillTournamentName() {
@@ -43,7 +47,7 @@ export class AppPage {
     searchComment.sendKeys('Test Tournament Description')
   }
   
-  fillTournamnetPlayers() {
+  fillTournamentPlayers() {
     var searchComment = element(by.id("exampleFormControlTextarea1"));
     searchComment.sendKeys('Test Tournament Battle.net')
   }

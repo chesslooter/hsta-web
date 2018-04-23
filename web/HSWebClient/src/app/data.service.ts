@@ -3,8 +3,11 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class DataService {
+
+  private battleTagSource = new BehaviorSubject<string>("");
+  private userIDSource = new BehaviorSubject<string>("");
   private loggedInSource = new BehaviorSubject<boolean>(false);
-  private activeTournamentSource = new BehaviorSubject<JSON>(null);
+  private activeTournamentSource = new BehaviorSubject<[""]>([""]);
   private activeTournamentJson = new BehaviorSubject<JSON>(null);
   private deleteMatchSource = new BehaviorSubject<[""]>([""]);
 
@@ -12,40 +15,20 @@ export class DataService {
   currentActiveTournamentJson = this.activeTournamentJson.asObservable();
   currentLoggedIn = this.loggedInSource.asObservable();
   currentMatch = this.deleteMatchSource.asObservable();
-
-  constructor() { }
-
-  changeLoggedIn(status: boolean) {
-    this.loggedInSource.next(status);
-  }
-
-  changeDeleteMatch(match: [""]) {
-    this.deleteMatchSource.next(match);
-  }
-
-  changeActiveTournament(tournament: JSON) {
-    this.activeTournamentSource.next(tournament);
-  }
-
-  changeActiveTournamentJson(tournament: JSON) {
-    console.log('changeActiveTournamentJson');
-    if(tournament['success']) {
-      this.activeTournamentJson.next(tournament);
-    }
-  }
-
-/*
-  private battleTagSource = new BehaviorSubject<string>("");
-  private userIDSource = new BehaviorSubject<string>("");
-  private tournaments = new BehaviorSubject<string[]>([]);
-  private deckCodesSource = new BehaviorSubject<string[]>([]);
-
   currentBattleTag = this.battleTagSource.asObservable();
   currentUserID = this.userIDSource.asObservable();
-  currentDecks = this.decksSource.asObservable();
-  currentDeckCodes = this.deckCodesSource.asObservable();
 
   constructor() { }
+
+  logout(){
+    this.loggedInSource.next(false);
+    this.userIDSource.next("");
+    this.battleTagSource.next("");
+    this.deleteMatchSource.next([""]);
+    this.activeTournamentSource.next([""]);
+    this.activeTournamentJson.next(null);
+
+  }
 
   changeUserID(ID: string) {
     this.userIDSource.next(ID)
@@ -54,13 +37,23 @@ export class DataService {
   changeBattleTag(battleTag: string) {
     this.battleTagSource.next(battleTag)
   }
-
-  changeDecks(decks: string[]) {
-    this.decksSource.next(decks)
+  changeLoggedIn(status: boolean) {
+    this.loggedInSource.next(status);
   }
 
-  changeDeckCodes(deckCodes: string[]) {
-    this.deckCodesSource.next(deckCodes)
-  }*/
+  changeDeleteMatch(match: [""]) {
+    this.deleteMatchSource.next(match);
+  }
+
+  changeActiveTournament(tournament) {
+    this.activeTournamentSource.next(tournament);
+  }
+
+  changeActiveTournamentJson(tournament: JSON) {
+    if(tournament['success']) {
+      this.activeTournamentJson.next(tournament);
+    }
+  }
+
 
 }

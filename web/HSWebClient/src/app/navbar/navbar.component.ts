@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from "../data.service";
 import { Observable } from 'rxjs/Observable';
@@ -14,15 +14,23 @@ import { ConfigService } from '../config.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   constructor(private data: DataService, private router: Router, private config: ConfigService) { }
 
   loggedIn: boolean = false;
 
-  ngOnInit() {
-    this.data.currentLoggedIn.subscribe(message => this.loggedIn = message);
+  sub1;
 
+  ngOnInit() {
+    this.sub1 = this.data.currentLoggedIn.subscribe(message => this.loggedIn = message);
+
+  }
+
+  ngOnDestroy(){
+    if(this.sub1){
+      this.sub1.unsubscribe();
+    }
   }
 
   home() {
@@ -38,8 +46,7 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     console.log('logging out');
-    this.data.changeLoggedIn(false);
-    this.router.navigate([''])
+    this.router.navigate(['']);
     }
 
 }

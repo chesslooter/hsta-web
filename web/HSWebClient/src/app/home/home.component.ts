@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, retry } from 'rxjs/operators';
 import { DataService } from "../data.service";
+import {ConfigService} from "../config.service";
 
 
 
@@ -11,18 +12,49 @@ import { DataService } from "../data.service";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  tournaments = ['tournament 1', 'tournament 2','tournament 3'];
-  //tournaments : JSON;
+  
+  tournaments = [];
+  uID;
 
-  constructor(private data: DataService, private router: Router) { }
+  sub1;
+  sub2;
+
+  constructor(private data: DataService, private router: Router, private config: ConfigService) { }
 
   ngOnInit() {
-    //this.data.currentActiveTournamentJson.subscribe(res => console.log(res)) // this.tournaments = res)
+    this.sub1 = this.data.currentUserID.subscribe(res => this.postGetID(res));
+    
   }
 
-  view(tournament: JSON){
+  ngOnDestroy(){
+    if(this.sub1){
+      this.sub1.unsubscribe();
+    }
+    if(this.sub2){
+      this.sub2.unsubscribe();
+    }
+  }
+
+  postGetID(res){
+    this.uID = res;
+    this.sub2 = this.config.getTournaments(this.uID).subscribe(res => this.postPostID(res));
+
+  }
+
+  postPostID(res){
+    this.data.changeActiveTournamentJson(res);
+    this.setupPage(res);
+  }
+
+  setupPage(res){
+    var hold;
+    hold = JSON.parse(res['data']);
+    this.tournaments = hold['tournaments'];
+  }
+
+  view(tournament){
     this.data.changeActiveTournament(tournament);
     this.router.navigate(['tournament']);
   }

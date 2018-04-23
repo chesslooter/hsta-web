@@ -11,7 +11,7 @@
         </thead>
         <tbody>
             <button (click)="view(tournament)" type="button" class="list-group-item list-group-item-action" *ngFor="let tournament of tournaments">
-                {{tournament}}
+                {{tournament['tournamentname']}}
               </button>  
         </tbody>
       </table>

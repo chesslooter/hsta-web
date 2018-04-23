@@ -27,4 +27,29 @@ export class ConfigService {
   login(email) {
     return this.http.get(this.url + '/api/login?battletag=' + email).map(res => res.json());
   }
+
+  getBattleTags(tID){
+    return this.http.get(this.url + '/api/get_tournament_battletags?tournamentid='+tID).map(res=>res.json());
+  }
+
+  createMatch(hID, aID, tID){
+    var valid;
+    var wID;
+    var date;
+
+    return this.http.get(this.url + '/api/create_match?homeTeamId='+hID+'&awayTeamId='+aID+ '&winningTeamId='+wID+'&tournamentid='+tID
+    +'&isValid='+valid+'&matchDate='+date)
+    .map(res=>res.json());
+  }
+
+  deleteMatch(mID){
+    return this.http.get(this.url + '/api/delete_match?matchid='+mID).map(res=>res.json());
+  }
+
+  updateMatch(mID, wID, status){
+    return this.http.get(this.url + '/api/update_match_result?matchid='+mID+'&winnerid='+wID)
+    .map(res=>res.json());
+  }
+
+ 
 }

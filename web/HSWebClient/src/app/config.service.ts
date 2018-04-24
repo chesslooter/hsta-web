@@ -49,7 +49,5 @@ export class ConfigService {
   updateMatch(mID, wID, status){
     return this.http.get(this.url + '/api/update_match_result?matchid='+mID+'&winnerid='+wID)
     .map(res=>res.json());
-  }
-
- 
+  } 
 }

@@ -21,18 +21,9 @@ export class TournamentComponent implements OnInit, OnDestroy {
   sub3;
   sub4;
   sub5;
-
-
   tournament;
-
-  matches = [
-    ['match 1', 'Josh', 'Jake', 'Josh', 'fair'],
-    ['match 2', 'Sam', 'Chase', 'In Progress', 'In Progress'],
-    ['match 3', 'Tim', 'Brian', 'Match not played', 'Match not played']
-  ];
-
+  matches = [];
   match = [];
-
   battleTags = [];
 
   constructor(private data: DataService, private router: Router, private modalService: NgbModal, private config: ConfigService) { }
@@ -42,20 +33,20 @@ export class TournamentComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnDestroy(){
-    if(this.sub1){
+  ngOnDestroy() {
+    if (this.sub1) {
       this.sub1.unsubscribe();
     }
-    if(this.sub2){
+    if (this.sub2) {
       this.sub2.unsubscribe();
     }
-    if(this.sub3){
+    if (this.sub3) {
       this.sub3.unsubscribe();
     }
-    if(this.sub4){
+    if (this.sub4) {
       this.sub4.unsubscribe();
     }
-    if(this.sub5){
+    if (this.sub5) {
       this.sub5.unsubscribe();
     }
   }
@@ -91,7 +82,14 @@ export class TournamentComponent implements OnInit, OnDestroy {
   }
 
   generateMatch() {
-    this.sub2 = this.config.createMatch(this.hID, this.aID, this.tID).subscribe(res => console.log(res));
+    this.sub2 = this.config.createMatch(this.hID, this.aID, this.tID).subscribe(res => this.addMatch(res));
+  }
+
+  addMatch(res) {
+    if (res['success']) {
+      var nMatch = {'matchid': res['id'],'player1': this.hID, 'player2' : this.aID, 'winner': null, 'isValid' :null};
+      this.matches.push(nMatch);
+    }
   }
 
   edit(modal, match) {
@@ -100,17 +98,28 @@ export class TournamentComponent implements OnInit, OnDestroy {
   }
 
   updateMatch() {
-    this.sub3 = this.config.updateMatch(this.match[0],this.wID,this.status).subscribe(res=>console.log(res));
+    this.sub3 = this.config.updateMatch(this.match['matchid'], this.wID, this.status).subscribe(res => console.log(res));
   }
 
   delete(modal, match) {
     this.match = match;
+    console.log(this.match);
     this.modalService.open(modal, { centered: true });
   }
 
   deleteNow() {
-    this.sub4 = this.config.deleteMatch(this.match[0]).subscribe(res => console.log(res));
-    this.match = [];
+    console.log(this.match['matchid']);
+    this.sub4 = this.config.deleteMatch(this.match['matchid']).subscribe(res => this.removeMatch(res));
+  }
+
+  removeMatch(res) {
+    if (res['success']) {
+      for (var i = 0; i < this.matches.length; i++) {
+        if (this.match['matchid'] == this.matches[i]['matchid']) {
+          this.matches.splice(i, 1);
+        }
+      }
+    }
   }
 
   back() {
